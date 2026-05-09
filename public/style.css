@@ -377,8 +377,36 @@ body.light-mode #settingsBtn { background: var(--field-day); color: var(--text-d
     
     .settings-content { padding: 20px; flex: 1; overflow-y: auto; }
 } /* القوس ده هو اللي بيقفل بلوك الموبايل كله */
-footer { text-align: center; padding: 20px; font-weight: bold; color: var(--gold); border-top: 1px solid #333; margin-top: 40px; }
-body.light-mode footer { color: var(--text-color); border-top: 1px solid #ccc; }
+/* الفوتر الجديد والاحترافي */
+footer { 
+    text-align: center; 
+    padding: 30px 20px; 
+    font-weight: bold; 
+    color: var(--gold); 
+    border-top: 1px solid rgba(255, 215, 0, 0.1); 
+    margin-top: 50px;
+    font-family: 'Cairo', sans-serif;
+    letter-spacing: 1px;
+}
+
+/* حركة بسيطة عشان القلب ينبض أو يبقى لونه أحمر */
+footer span {
+    color: #ff0055; /* لون النيون ريد اللي إنت مستخدمه */
+    display: inline-block;
+    margin: 0 5px;
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+body.light-mode footer { 
+    color: var(--text-day); 
+    border-top: 1px solid #ddd; 
+}
 .onboarding-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 9999; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px);
 opacity: 0; visibility: hidden; transition: 0.3s; }
 .onboarding-overlay.active { opacity: 1; visibility: visible; }

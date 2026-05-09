@@ -617,37 +617,31 @@ value="60" min="5" max="600" step="5" readonly aria-label="Duration">
 <p data-i18n="ob_generate_desc" style="color:var(--text-color);">Hit generate to get your ready-to-use prompts for Suno AI!</p>
 </div>
 <div style="display: flex; justify-content: space-between; margin-top: 30px;">
-<button class="btn-danger" id="ob-skip" style="width: auto; padding: 10px 20px;" data-i18n="ob_skip">Skip</button>
-<div style="display: flex; gap: 10px;">
-<button class="btn-blue" id="ob-back" style="width: auto; padding: 10px 20px; display:none;" data-i18n="ob_back">Back</button>
-<button class="btn-success" id="ob-next" style="width: auto; padding: 10px 20px;" data-i18n="ob_next">Next</button>
-<button class="btn-success" id="ob-finish" style="width: auto; padding: 10px 20px; display:none;" data-i18n="ob_finish">Finish</button>
-</div>
-</div>
-</div>
+            <button class="btn-danger" id="ob-skip" style="width: auto; padding: 10px 20px;" data-i18n="ob_skip">Skip</button>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn-blue" id="ob-back" style="width: auto; padding: 10px 20px; display:none;" data-i18n="ob_back">Back</button>
+                <button class="btn-success" id="ob-next" style="width: auto; padding: 10px 20px;" data-i18n="ob_next">Next</button>
+                <button class="btn-success" id="ob-finish" style="width: auto; padding: 10px 20px; display:none;" data-i18n="ob_finish">Finish</button>
+            </div>
+        </div>
+    </div> </div> <footer>
+    <p>Created with <span>❤️</span> by Hussein Elmalek</p>
+</footer>
+
 <div id="toast" aria-live="polite"></div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-<script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.21/mammoth.browser.min.js"></script>
-<script src="script.js"></script>
+
 <div class="maestro-assistant-wrapper">
     <button id="maestroFab" class="maestro-fab" aria-label="Open Assistant">
         <span class="fab-icon">🤖</span>
     </button>
     <div id="maestroChatWindow" class="maestro-chat-window">
-        <div class="maestro-chat-header">
-            <span data-i18n="ast_title">Maestro Assistant</span>
-            <button id="maestroCloseBtn" class="maestro-close">&times;</button>
         </div>
-        <div id="maestroChatBody" class="maestro-chat-body">
-            <div class="maestro-msg ai" data-i18n="ast_welcome">Hello! How can I help you with your music today?</div>
-        </div>
-        <div class="maestro-chat-footer">
-            <input type="text" id="maestroChatInput" class="neon-box" data-i18n-placeholder="ast_placeholder" placeholder="Type a message...">
-            <button id="maestroSendBtn" class="btn-blue" style="margin-top:0;" data-i18n="ast_send">Send</button>
-        </div>
-    </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.21/mammoth.browser.min.js"></script>
+<script src="script.js"></script>
+
 </body>
 </html>
