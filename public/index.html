@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&family=Cairo:wght@400;900&display=swap" rel="stylesheet">
+    <title>Music Factory AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<nav class="global-navbar">
+            <button id="navBackBtn" style="display:none; background:none; border:none; color:var(--neon-blue); font-size:24px; cursor:pointer; padding:0 15px 0 0; font-weight:bold; transition: 0.3s; line-height: 1;">&#8592;</button>
+            <div class="nav-brand">
+                <svg viewBox="0 0 100 100" width="28" height="28">
+                    <defs>
+        <linearGradient id="neonGradientNav" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:var(--neon-blue, #00d2ff);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:var(--neon-purple, #bc13fe);stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <g style="fill: none; stroke: url(#neonGradientNav); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round;">
+        <path d="M 22 55 C 22 15, 78 15, 78 55" />
+        <rect style="fill: url(#neonGradientNav); stroke: none;" x="16" y="50" width="10" height="20" rx="4" />
+        <rect style="fill: url(#neonGradientNav); stroke: none;" x="74" y="50" width="10" height="20" rx="4" />
+        <path d="M 35 45 C 30 45, 25 50, 25 60 C 25 75, 50 85, 50 85 C 50 85, 75 75, 75 60 C 75 50, 70 45, 65 45 C 60 45, 55 50, 50 50 C 45 50, 40 45, 35 45 Z" />
+        <path style="stroke: url(#neonGradientNav); stroke-width: 3; stroke-linecap: round;" d="M 40 65 Q 50 75, 60 65" />
+    </g>
+    <g transform="translate(0, 2)">
+        <rect style="fill: url(#neonGradientNav);" x="42" y="58" width="3.5" height="12" rx="1" />
+        <rect style="fill: url(#neonGradientNav);" x="48.2" y="55" width="3.5" height="18" rx="1" />
+        <rect style="fill: url(#neonGradientNav);" x="54.5" y="58" width="3.5" height="12" rx="1" />
+    </g>
+</svg>
+<span data-i18n="app_title">Music Factory AI</span>
+</div>
+<input type="text" class="nav-search" placeholder="Search...">
+<div class="nav-links">
+    <a href="#" id="navHomeLink" data-i18n="nav_home">الرئيسية</a>
+    <a href="#" id="navStudioLink" data-i18n="nav_studio">الاستديو</a>
+    <a href="#" id="navProdLink" data-i18n="nav_production">الإخراج</a>
+    
+    <a href="#" data-i18n="nav_community">Community</a>
+    <a href="#" data-i18n="nav_my_project">My Project</a>
+</div>
+</nav>
+<div class="settings-overlay" id="settingsPage">
+<div class="settings-header">
+<h2 data-i18n="settings_title">           ⚙️            Settings</h2>
+<button class="settings-close" id="closeSettingsBtn" aria-label="Close Settings">           ✖           </button>
+</div>
+<div class="settings-layout">
+<div class="settings-sidebar" id="settingsNav">
+<button class="active" data-target="sec-account" data-i18n="set_account">           👤            Account</button>
+<button data-target="sec-appearance" data-i18n="set_appearance">           🎨            Appearance</button>
+<button data-target="sec-notifications" data-i18n="set_notifications">           🔔            Notifications</button>
+<button data-target="sec-privacy" data-i18n="set_privacy">           🔒            Privacy</button>
+<button data-target="sec-data" data-i18n="set_data">           💾            Data & Storage</button>
+<button data-target="sec-accessibility" data-i18n="set_accessibility">           ♿            Accessibility</button>
+<button data-target="sec-support" data-i18n="sec_support">           🎧            Support & FAQ</button>
+</div>
+<div class="settings-content">
+    <div id="sec-account" class="settings-section active">
+        <div class="settings-group">
+            <h3 data-i18n="set_credits">Credits & Usage</h3>
+            <div class="credits-display" title="Credits">           🪙            <span id="creditCountSettings">10</span></div>
+            <p style="color:#aaa; font-size:13px;" data-i18n="acc_credits_desc">Your current balance for advanced generation.</p>
+        </div>
+        
+        <div class="settings-group">
+            <h3 data-i18n="acc_profile">Profile</h3>
+            
+            <div class="settings-item">
+                <span data-i18n="acc_name">Name:</span>
+                <input type="text" id="accNameInput" class="settings-input" value="" placeholder="Your Name">
+            </div>
+            
+            <div class="settings-item">
+                <span data-i18n="acc_email">Email:</span>
+                <input type="email" id="accEmailInput" class="settings-input" placeholder="example@mail.com">
+            </div>
+            
+            <div class="settings-item">
+                <span data-i18n="acc_password">Password:</span>
+                <div class="password-wrapper">
+                    <input type="password" id="accPasswordInput" class="settings-input" placeholder="********">
+                    <span id="togglePasswordBtn" class="toggle-password" title="Toggle Visibility">           👁️           </span>
+                </div>
+            </div>
+            
+            <div class="settings-item">
+                <span data-i18n="acc_picture">Profile Picture:</span>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <img id="profilePicPreview" src="" alt="Profile Preview" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; display: none;">
+                    <input type="file" id="profilePicInput" class="settings-input" accept="image/*">
+                </div>
+            </div>
+            
+            <button id="loginBtn" class="btn-blue" data-i18n="acc_login">Login</button>
+            <button id="registerBtn" class="btn-blue" style="margin-right:10px;">إنشاء حساب</button>
+            <button id="logoutBtn" class="btn-danger" style="margin-right:10px;" data-i18n="acc_logout">Logout</button>
+            <button class="btn-danger" style="margin-right:10px;" data-i18n="acc_delete">Delete Account</button>
+        </div>
+    </div>
+</div>
+<div id="sec-appearance" class="settings-section">
+<div class="settings-group">
+<h3 data-i18n="app_lang">Language</h3>
+<select class="settings-input" id="langSelect" style="width:100%;">
+<option value="en">English</option>
+<option value="ar">العربية</option>
+</select>
+</div>
+<div class="settings-group">
+<h3 data-i18n="app_color">Primary Color</h3>
+<input type="color" id="primaryColorPicker" value="#00d2ff" style="width:100%; height:40px; cursor:pointer;">
+</div>
+<div class="settings-group">
+<h3 data-i18n="app_fontsize">Font Size</h3>
+<input type="range" id="fontSizeSlider" min="14" max="22" value="16" style="width:100%;">
+</div>
+<div class="settings-group">
+<h3 data-i18n="app_shortcuts">Keyboard Shortcuts</h3>
+<div class="settings-item">
+<span data-i18n="app_shortcuts_toggle">Enable Shortcuts</span>
+<input type="checkbox" id="enableShortcutsCheck" checked>
+</div>
+<div style="font-size: 14px; color: #ccc; margin-top: 15px; line-height: 1.8;" data-i18n="guide_a3">
+- <b>Enter</b>: Generate prompt.<br>- <b>Ctrl + S</b>: Save data.<br>- <b>Ctrl + Z</b> or <b>Ctrl + Y</b>: Undo/Restore.
+</div>
+</div>
+</div>
+<div id="sec-notifications" class="settings-section">
+<div class="settings-group">
+<h3 data-i18n="set_notifications">Notifications</h3>
+<div class="settings-item">
+<span data-i18n="notif_enable">Enable Notifications</span>
+<input type="checkbox" checked>
+</div>
+<div class="settings-item">
+<span data-i18n="notif_sounds">Sound Alerts</span>
+<input type="checkbox" checked>
+</div>
+<div class="settings-item">
+<span data-i18n="notif_types">Notification Types</span>
+<select class="settings-input">
+<option data-i18n="notif_all">All</option>
+<option data-i18n="notif_important">Important Only</option>
+</select>
+</div>
+<div class="settings-item">
+<span data-i18n="notif_dnd">Do Not Disturb</span>
+<input type="checkbox">
+</div>
+</div>
+</div>
+<div id="sec-privacy" class="settings-section">
+<div class="settings-group">
+<h3 data-i18n="set_privacy">Privacy</h3>
+<div class="settings-item">
+<span data-i18n="priv_2fa">Two-Factor Authentication</span>
+<button class="btn-blue" data-i18n="priv_setup">Setup</button>
+</div>
+<div class="settings-item">
+<span data-i18n="priv_applock">App Lock</span>
+<input type="checkbox">
+</div>
+<div class="settings-item">
+<span data-i18n="priv_permissions">Permissions</span>
+<button class="btn-blue" data-i18n="priv_manage">Manage</button>
+</div>
+<div class="settings-item">
+<span data-i18n="priv_devices">Connected Devices</span>
+<button class="btn-blue" data-i18n="priv_view">View (1)</button>
+</div>
+</div>
+</div>
+<div id="sec-data" class="settings-section">
+<div class="settings-group">
+<h3 data-i18n="set_data">Data</h3>
+<div class="settings-item">
+<span data-i18n="data_cache">Clear Cache</span>
+<button class="btn-danger" data-i18n="data_clear">Clear</button>
+</div>
+<div class="settings-item">
+<span data-i18n="data_optimize">Optimize Data Usage</span>
+<input type="checkbox" checked>
+</div>
+<div class="settings-item">
+<span data-i18n="data_backup">Automatic Backup</span>
+<input type="checkbox" checked>
+</div>
+<div class="settings-item">
+<span data-i18n="data_files">File Management</span>
+<button class="btn-blue" data-i18n="data_manage">Manage</button>
+</div>
+</div>
+</div>
+<div id="sec-accessibility" class="settings-section">
+<div class="settings-group">
+<h3 data-i18n="set_accessibility">Accessibility</h3>
+<div class="settings-item">
+<span data-i18n="accs_zoom">Text Zoom</span>
+<input type="range" min="100" max="200" value="100">
+</div>
+<div class="settings-item">
+<span data-i18n="accs_contrast">High Contrast Mode</span>
+<input type="checkbox">
+</div>
+<div class="settings-item">
+<span data-i18n="accs_reader">Screen Reader Support</span>
+<input type="checkbox" checked>
+</div>
+<div class="settings-item">
+<span data-i18n="app_shortcuts">Keyboard Shortcuts</span>
+<button class="btn-blue" data-i18n="accs_keys">Customize</button>
+</div>
+</div>
+</div>
+<div id="sec-support" class="settings-section">
+<div class="settings-group">
+<h3 data-i18n="sec_guide">Help Center & FAQ</h3>
+<button class="accordion" data-i18n="guide_about">About Music Factory</button>
+<div class="panel"><p data-i18n="guide_about_desc">An advanced tool designed for engineering AI music prompts. Turn words into musical structures instantly.</p></div>
+<button class="accordion" data-i18n="guide_q2">User Guide</button>
+<div class="panel"><p data-i18n="guide_a2">1. Enter lyrics or drag a file to auto-distribute.<br>2. Select your preferred intro and outro.<br>3.
+Go to Studio and pick rhythm, mood, and maqam.<br>4. Generate and copy outputs.</p></div>
+<button class="accordion" data-i18n="guide_q3">Keyboard Shortcuts</button>
+<div class="panel"><p data-i18n="guide_a3">- <b>Enter</b>: Generate prompt.<br>- <b>Ctrl + S</b>: Save data.<br>- <b>Ctrl + Z</b> or <b>Ctrl + Y</b>: Undo/Restore.</p></div>
+<button class="accordion" data-i18n="guide_q4">Outro Engine Explanation</button>
+<div class="panel"><p data-i18n="guide_a4">A smart feature defining your song's conclusion. Choose to fade out, stop abruptly, or end with a solo for a professional touch.</p></div>
+<button class="accordion" data-i18n="guide_q5">Auto Theme Explanation</button>
+<div class="panel"><p data-i18n="guide_a5">Auto Mode seamlessly switches your interface between Light and Dark themes based on your device's local time (Light from 06:00 to 17:59, and Dark from 18:00 to 05:59).</p></div>
+<button class="accordion" data-i18n="guide_terms">Terms & Conditions</button>
+<div class="panel"><p data-i18n="guide_terms_desc">By using this software, you comply with local copyright laws. Generated outputs are for your use.</p></div>
+<button class="accordion" data-i18n="guide_privacy">Privacy Policy</button>
+<div class="panel"><p data-i18n="guide_privacy_desc">All lyrics and prompt data are processed locally in your browser. No data is stored on remote servers.</p></div>
+<button class="accordion" data-i18n="guide_report">Report a Problem</button>
+<div class="panel"><p data-i18n="guide_report_desc">If you encounter an issue, please contact support at hussien.elmalek@gmail.com.</p></div>
+<button class="accordion" data-i18n="guide_suggest">Send Suggestions</button>
+<div class="panel"><p data-i18n="guide_suggest_desc">We welcome your ideas! Email us to help improve Music Factory.</p></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="loadingOverlay" class="overlay-loader">
+<div class="progress-orb"></div>
+<div class="loader-text" data-i18n="processing">جارٍ المعالجة الهندسية...</div>
+</div>
+<div id="glow" class="light-glow"></div>
+<div class="top-controls">
+<button id="themeBtn" class="theme-circle" data-i18n-title="theme_dark" aria-label="Toggle Theme"><span>           🌙           </span></button>
+<button id="settingsBtn" class="theme-circle" aria-label="Settings" data-i18n-title="nav_settings" title="Settings"><span>           ⚙️           </span></button>
+</div>
+<button id="screenBtn" class="screen-btn" aria-label="Toggle fullscreen" title="Fullscreen">
+<span class="text" data-i18n="btn_fullscreen">Fullscreen</span>
+<span class="icon-fs">           ⛶           </span>
+</button>
+<div class="logo-container" id="logoBox">
+<div class="app-title-container">
+<svg class="gear gear-left" viewBox="0 0 24 24"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.47,5.34 14.86,5.12L14.47,2.44C14.43,2.21 14.23,2.05 14,2.05H10C9.77,2.05 9.57,2.21 9.53,2.44L9.14,5.12C8.53,5.34 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.53,18.66 9.14,18.88L9.53,21.56C9.57,21.79 9.77,21.95 10,21.95H14C14.23,21.95 14.43,21.79 14.47,21.56L14.86,18.88C15.47,18.66 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/></svg>
+<svg class="gear gear-right" viewBox="0 0 24 24"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.47,5.34 14.86,5.12L14.47,2.44C14.43,2.21 14.23,2.05 14,2.05H10C9.77,2.05 9.57,2.21 9.53,2.44L9.14,5.12C8.53,5.34 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.53,18.66 9.14,18.88L9.53,21.56C9.57,21.79 9.77,21.95 10,21.95H14C14.23,21.95 14.43,21.79 14.47,21.56L14.86,18.88C15.47,18.66 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/></svg>
+<div class="logo-container" id="premium-logo">
+<svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:var(--neon-blue, #00d2ff);stop-opacity:1" />
+<stop offset="100%" style="stop-color:var(--neon-purple, #bc13fe);stop-opacity:1" />
+</linearGradient>
+</defs>
+<g class="logo-path">
+<path d="M 22 55 C 22 15, 78 15, 78 55" />
+<rect class="ear-cup-solid" x="16" y="50" width="10" height="20" rx="4" />
+<rect class="ear-cup-solid" x="74" y="50" width="10" height="20" rx="4" />
+<path d="M 35 45 C 30 45, 25 50, 25 60 C 25 75, 50 85, 50 85 C 50 85, 75 75, 75 60 C 75 50, 70 45, 65 45 C 60 45, 55 50, 50 50 C 45 50, 40 45, 35 45 Z" />
+<path class="smile-path" d="M 40 65 Q 50 75, 60 65" fill="none" />
+</g>
+<g transform="translate(0, 2)">
+<rect class="eq-bar" x="42" y="58" width="3.5" height="12" rx="1" />
+<rect class="eq-bar" x="48.2" y="55" width="3.5" height="18" rx="1" />
+<rect class="eq-bar" x="54.5" y="58" width="3.5" height="12" rx="1" />
+</g>
+</svg>
+</div>
+<h1 class="app-title">Music Factory</h1>
+<div class="wave-bars">
+<div class="bar" style="animation-delay: 0.1s"></div>
+<div class="bar" style="animation-delay: 0.3s"></div>
+<div class="bar" style="animation-delay: 0.2s"></div>
+<div class="bar" style="animation-delay: 0.5s"></div>
+<div class="bar" style="animation-delay: 0.4s"></div>
+<div class="bar" style="animation-delay: 0.6s"></div>
+<div class="bar" style="animation-delay: 0.2s"></div>
+</div>
+</div>
+</div>
+<div class="tabs-nav" id="mainTabsNav">
+    <button class="tab-btn active" id="clearFieldsBtn" data-target="tab-lyrics" data-i18n="tab_lyrics">Create Music Project</button>
+    <button class="tab-btn" data-target="tab-melody" data-i18n="tab_melody" style="display: none;">Studio</button>
+    <button class="tab-btn" data-target="tab-outputs" data-i18n="tab_outputs" style="display: none;">Output Gallery</button>
+</div>
+<div class="container">
+<div id="tab-lyrics" class="tab-content active">
+<div class="card">
+<div class="toggle-container" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
+<label class="btn-3d btn-blue mode-btn" style="margin: 0; flex: 1; min-width: 250px; display: flex; justify-content: center;"><input type="radio" name="trackType" value="vocal" id="radioVocal" style="display:none;" checked>            🎤            <span data-i18n="mode_vocal">Vocal Track</span></label>
+<label class="btn-3d btn-success mode-btn" style="margin: 0; flex: 1; min-width: 250px; display: flex; justify-content: center;"><input type="radio" name="trackType" value="instrumental" id="radioInst" style="display:none;">            🎻            <span data-i18n="mode_inst">Instrumental Only</span></label>
+</div>
+</div>
+<div class="card" id="lyricsSection">
+<div class="section-title"> <span data-i18n="sec_lyrics">Lyrics Engine</span></div>
+<div class="drag-drop-box" id="dropZone">
+<div class="drop-content">
+<span class="drop-icon">                      </span>
+<p style="font-weight: bold; margin: 0; color: var(--text-color, #333);" data-i18n="drop_title">اسحب ملف الكلمات هنا بالصيغ المدعومة</p>
+<span class="drop-hint" data-i18n="drop_hint">ويُفضل أن تكون بصيغة Word وأن تكون الكلمات مقسمة إلى مذهب وكوبليه أول وكوبليه ثاني (اختياري)</span>
+<input type="file" id="fileInput" accept=".txt, .json, .docx, .pdf" style="display: none;">
+<button class="btn-upload" id="browseFileBtn" data-i18n="drop_btn">Or browse files</button>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 20px;">
+<div style="width: 100%;">
+<label><span data-i18n="lbl_chorus">Chorus</span> <span id="cCount" class="char-counter">0 / 500</span></label>
+<textarea id="chorus" class="neon-box lyric-input" rows="4" data-i18n-placeholder="pl_chorus" placeholder="Type chorus lyrics here..." data-limit="500"></textarea>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+<div>
+<label><span data-i18n="lbl_v1">Verse 1</span> <span id="v1Count" class="char-counter">0 / 800</span></label>
+<textarea id="v1" class="neon-box lyric-input" rows="4" data-i18n-placeholder="pl_v1" placeholder="Type Verse 1..." data-limit="800"></textarea>
+</div>
+<div>
+<label><span data-i18n="lbl_v2">Verse 2</span> <span id="v2Count" class="char-counter">0 / 800</span></label>
+<textarea id="v2" class="neon-box lyric-input" rows="4" data-i18n-placeholder="pl_v2" placeholder="Type Verse 2 lyrics..." data-limit="800"></textarea>
+</div>
+</div>
+</div>
+</div>
+<button class="btn-3d btn-purple" id="nextToMelodyBtn" style="margin-top: 25px; display: flex; justify-content: center;">
+<span data-i18n="btn_next_melody">Go to Composition & Arrangement Studio →</span>
+</button>
+</div>
+<div id="tab-melody" class="tab-content">
+<div class="card" style="margin-bottom: 20px; display:none;" id="oldPromptLibContainer">
+<div class="section-title"> <span data-i18n="sec_prompt_lib">           📚            Ready-Made Melody Generators for Non-Specialists</span></div>
+<select id="promptLibrarySelect" class="neon-box" style="margin-bottom: 10px;" aria-label="Prompt Library">
+<option value="" data-i18n="opt_lib_custom">Custom Design...</option>
+<option value="pop" data-i18n="opt_lib_pop">Pop</option>
+<option value="cinematic" data-i18n="opt_lib_cinematic">Cinematic</option>
+<option value="epic" data-i18n="opt_lib_epic">Epic Trailer</option>
+<option value="ambient" data-i18n="opt_lib_ambient">Ambient</option>
+<option value="lofi" data-i18n="opt_lib_lofi">Lofi</option>
+<option value="arabic_pop" data-i18n="opt_lib_arabic_pop">Arabic Pop</option>
+<option value="emotional" data-i18n="opt_lib_emotional">Emotional Piano</option>
+<option value="orchestral" data-i18n="opt_lib_orchestral">Orchestral Score</option>
+</select>
+</div>
+<div class="card">
+<div class="section-title">
+<span data-i18n="sec_pillars">Advanced Studio for Composition & Arrangement</span>
+<div style="display:flex; align-items:center; gap: 15px;">
+<label style="font-size: 13px; font-weight: bold; color: var(--gold); cursor: pointer; display:flex; align-items:center; gap:5px;">
+<input type="checkbox" id="advancedOverrideToggle" style="accent-color: var(--neon-red);">    🔓    Advanced Mode
+</label>
+<div id="compIndicator" class="comp-indicator" title="Musical Harmony Status">
+<div id="compDot" class="comp-dot comp-green"></div>
+<span id="compText">Perfect Harmony</span>
+</div>
+</div>
+</div>
+<div id="compSuggestions" style="display: none; background: rgba(220,53,69,0.1); border: 1px solid #dc3545; padding: 10px 15px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 0 10px rgba(220,53,69,0.2);">
+<strong style="color: #ff4d4d; font-size: 14px;">   💡    Compatibility Assistant:</strong>
+<ul id="compSuggestionsList" style="margin: 5px 0 0; padding-left: 20px; font-size: 13px; color: #ffcccc;"></ul>
+</div>
+<div style="margin-bottom: 25px;">
+<label><span data-i18n="lbl_intro">Intro</span>
+<span class="tooltip">           ❓            <span class="tooltiptext" data-i18n="tt_intro">The intro dictates how your track begins.</span></span>
+</label>
+<select id="introDropdown" class="neon-box auto-save-trigger" style="margin-bottom: 10px; font-weight: bold;">
+<option value="تلقائي (حسب اللحن)" data-i18n="opt_intro_auto">           🪄            Automatic</option>
+<option value="مقدمة موسيقية طويلة" data-i18n="opt_intro_long">           🎻            Long Instrumental</option>
+<option value="دخول مفاجئ (بدون مقدمة)" data-i18n="opt_intro_sudden">           ⚡            Sudden Entry</option>
+<option value="بناء تدريجي (تصاعدي)" data-i18n="opt_intro_build">           📈            Gradual Buildup</option>
+<option value="مقدمة إيقاعية (طبلة/درامز)" data-i18n="opt_intro_perc">           🥁            Percussive Intro</option>
+<option value="مقدمة غنائية (آهات/كورال)" data-i18n="opt_intro_vocal">           🎤            Vocal Intro</option>
+</select>
+</div>
+<div class="pillars-grid">
+<div class="pillar">
+<label><span data-i18n="p_rhythmic_mode">Rhythmic Mode</span></label>
+<select id="p_rhythmic_mode" class="auto-save-trigger neon-box">
+<option value="Rhythmic" data-i18n="opt_rhythmic">Rhythmic</option>
+<option value="Ambient" data-i18n="opt_ambient">Ambient</option>
+<option value="Hybrid" data-i18n="opt_hybrid">Hybrid</option>
+</select>
+</div>
+<div class="pillar">
+<label><span data-i18n="p2">2. Mood & Feeling</span> <span class="tooltip">      ❓      <span class="tooltiptext" data-i18n="tt_mood">يحدد الإحساس العام للموسيقى</span></span></label>
+<select id="p_feeling" class="auto-save-trigger mood-trigger neon-box searchable-native">
+<option value="Auto">تلقائي (Auto)</option>
+<optgroup label="Positive / Joyful" data-i18n-label="og_joyful">
+<option value="joyful" data-i18n="opt_joyful">Joyful & Cheerful</option><option value="danceable" data-i18n="opt_danceable">Danceable</option>
+<option value="festive" data-i18n="opt_festive">Festive</option><option value="uplifting" data-i18n="opt_uplifting">Uplifting</option>
+</optgroup>
+<optgroup label="Melancholic / Emotional" data-i18n-label="og_sad">
+<option value="romantic" data-i18n="opt_romantic">Romantic</option><option value="sad" data-i18n="opt_sad">Sad & Melancholic</option>
+<option value="tragic" data-i18n="opt_tragic">Tragic</option><option value="nostalgic" data-i18n="opt_nostalgic">Nostalgic</option>
+</optgroup>
+<optgroup label="Powerful / Dramatic" data-i18n-label="og_epic">
+<option value="proud" data-i18n="opt_proud">Proud</option><option value="powerful" data-i18n="opt_powerful">Powerful & Intense</option>
+<option value="epic" data-i18n="opt_epic">Epic Dramatic</option>
+</optgroup>
+</select>
+</div>
+<div class="pillar" id="vocalPillar">
+<label data-i18n="p3">3. Vocalist</label>
+<select id="p_vocals" class="auto-save-trigger neon-box">
+<option value="Auto">تلقائي (Auto)</option>
+<option value="Male vocal" data-i18n="opt_male">Male Vocal</option><option value="Female vocal" data-i18n="opt_female">Female Vocal</option>
+<option value="Young boy vocal" data-i18n="opt_boy">Young Boy Vocal</option><option value="Young girl vocal" data-i18n="opt_girl">Young Girl Vocal</option>
+<option value="Children choir" data-i18n="opt_child_choir">Children Choir</option><option value="Male choir" data-i18n="opt_male_choir">Male Choir</option>
+<option value="Group vocal harmony" data-i18n="opt_group">Group Harmony</option><option value="Poetry recitation" data-i18n="opt_poetry">Poetry Recitation</option>
+<option value="Operatic vocal" data-i18n="opt_operatic">Operatic Vocal</option><option value="Raspy vocal" data-i18n="opt_raspy">Raspy Vocal</option>
+</select>
+</div>
+<div class="pillar">
+<label><span data-i18n="p_track_type">Track Type</span></label>
+<select id="p_track_type" class="auto-save-trigger neon-box">
+<option value="full" data-i18n="opt_full">Full Track</option>
+<option value="cue" data-i18n="opt_cue">Cue (Short)</option>
+<option value="loop" data-i18n="opt_loop">Seamless Loop</option>
+</select>
+</div>
+<div class="pillar">
+<label><span data-i18n="p_duration">Duration</span></label>
+<div style="display:flex; align-items:center; gap:5px; background:var(--field-night); padding:5px; border-radius:10px; border:1px solid #444;" class="dur-wrapper">
+<button id="btn_dur_dec" class="btn-blue" style="margin:0; padding:12px 20px; border-radius:8px; font-size:18px;">-</button>
+<input type="number" id="p_duration" class="auto-save-trigger" style="margin:0; text-align:center; flex:1; background:#000; border:1px solid var(--neon-blue); color:var(--neon-blue); font-weight:bold; font-size:24px; font-family:'Orbitron', monospace; text-shadow:0 0 5px var(--neon-blue); border-radius:8px; padding:10px;"
+value="60" min="5" max="600" step="5" readonly aria-label="Duration">
+<button id="btn_dur_inc" class="btn-blue" style="margin:0; padding:12px 20px; border-radius:8px; font-size:18px;">+</button>
+</div>
+<div id="dur_label" style="font-size:14px; color:var(--gold); margin-top:5px; text-align:center; font-weight:bold;">1 Minute</div>
+</div>
+<div class="pillar" style="grid-column: 1 / -1; margin-top: 15px;">
+<label><span data-i18n="p_inst_orchestra">التوزيع الآلي (Orchestration)</span></label>
+<div id="orchestrationBuilder" class="neon-box" style="padding:15px; background:var(--card-night);">
+<select id="orchSectionSelect" class="settings-input" style="margin-bottom:15px; width:100%; border: 1px solid #444; padding: 10px; border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: bold; cursor: pointer;"></select>
+<div id="orchCategories"></div>
+</div>
+<input type="hidden" id="p_instrumentation" class="auto-save-trigger">
+</div>
+<details class="advanced-settings">
+<summary>       ⚙️        Advanced Setup (R Rhythm, Tempo & Maqam)</summary>
+<div>
+<div class="pillar" style="width:100%;">
+<label><span data-i18n="p1">1. Rhythm & Style</span> <span class="tooltip">      ❓      <span class="tooltiptext" data-i18n="tt_rhythm">يحدد الإيقاع الأساسي للأغنية</span></span></label>
+<select id="p_rhythm" class="auto-save-trigger mood-trigger neon-box searchable-native" data-searchable="true">
+<option value="Auto">تلقائي (Auto)</option>
+<option value="None" data-i18n="opt_no_rhythm">بدون إيقاع (No Rhythm)</option>
+<optgroup label="Egyptian" data-i18n-label="og_egyptian">
+<option value="maqsum" data-i18n="opt_maqsum">Egyptian Maqsum</option><option value="saidi" data-i18n="opt_saidi">Energetic Saidi</option>
+<option value="fallahi" data-i18n="opt_fallahi">Fallahi</option><option value="baladi" data-i18n="opt_baladi">Authentic Baladi</option>
+<option value="ayoub" data-i18n="opt_ayoub">Ayoub (Zar)</option><option value="mahraganat" data-i18n="opt_mahraganat">Mahraganat</option>
+<option value="trap" data-i18n="opt_trap">Egyptian Trap</option><option value="fox" data-i18n="opt_fox">Fox</option>
+<option value="malfuf" data-i18n="opt_malfuf">Malfuf</option>
+</optgroup>
+<optgroup label="Omani" data-i18n-label="og_omani">
+<option value="razha" data-i18n="opt_razha">Razha</option><option value="bara" data-i18n="opt_bara">Bara'a</option>
+</optgroup>
+<optgroup label="Khaleeji" data-i18n-label="og_gulf">
+<option value="pop_khaliji" data-i18n="opt_pop_khaliji">Khaleeji Pop / Bandari</option><option value="samri" data-i18n="opt_samri">Khaleeji Samri</option>
+</optgroup>
+<optgroup label="Levantine" data-i18n-label="og_shami">
+<option value="dabke" data-i18n="opt_dabke">Levantine Dabke</option>
+</optgroup>
+<optgroup label="Formal / Classical" data-i18n-label="og_fusha">
+<option value="military_march" data-i18n="opt_military_march">Military March</option><option value="school_march" data-i18n="opt_school_march">School March</option>
+<option value="wahda_kabira" data-i18n="opt_wahda_kabira">Wahda Kabira</option><option value="waltz" data-i18n="opt_waltz">Arabic Waltz</option>
+</optgroup>
+</select>
+</div>
+<div class="pillar" style="width:100%;">
+<label data-i18n="p4">4. Tempo (BPM)</label>
+<select id="p_tempo" class="auto-save-trigger tempo-trigger neon-box">
+<option value="Auto" data-i18n="opt_auto_tempo">Auto (Based on Rhythm)</option>
+<option value="Slow" data-i18n="opt_slow">Slow (60 - 85)</option>
+<option value="Medium" data-i18n="opt_medium">Medium (90 - 115)</option>
+<option value="Fast" data-i18n="opt_fast">Fast (120 - 140)</option>
+<option value="Manual" data-i18n="opt_manual">Manual Digital Input...</option>
+</select>
+<input type="number" id="manualTempo" class="auto-save-trigger lyric-input neon-box" style="display:none; margin-top:5px;" placeholder="BPM">
+</div>
+<div class="pillar" style="width:100%;">
+<label><span data-i18n="p5">5. Maqam (Pro)</span> <span class="tooltip">      ❓      <span class="tooltiptext" data-i18n="tt_maqam">السلم الموسيقي الشرقي للخبراء</span></span></label>
+<select id="p_maqam" class="auto-save-trigger neon-box searchable-native" data-searchable="true">
+<option value="Auto" data-i18n="opt_auto_maqam">Auto (AI Choice)</option>
+<option value="Bayati" data-i18n="opt_bayati">Bayati</option><option value="Rast" data-i18n="opt_rast">Rast</option>
+<option value="Ajam" data-i18n="opt_ajam">Ajam</option><option value="Nahawand" data-i18n="opt_nahawand">Nahawand</option>
+<option value="Kurd" data-i18n="opt_kurd">Kurd</option><option value="Hijaz" data-i18n="opt_hijaz">Hijaz</option>
+<option value="Saba" data-i18n="opt_saba">Saba</option><option value="Sikah" data-i18n="opt_sikah">Sikah</option>
+</select>
+<div id="maqamGuideTxt" style="font-size:12px; color:#888; margin-top:5px; font-weight:bold;"></div>
+</div>
+</div>
+</details>
+</div>
+<div style="margin-top: 25px; margin-bottom: 25px;">
+<label><span data-i18n="lbl_outro">Outro</span>
+<span class="tooltip">           ❓            <span class="tooltiptext" data-i18n="tt_outro">The outro dictates how your track concludes.</span></span>
+<span id="oCount" class="char-counter">0 / 500</span>
+</label>
+<select id="outroDropdown" class="neon-box auto-save-trigger" style="margin-bottom: 10px; font-weight: bold;">
+<option value="تلقائي (توصية المايسترو)" data-i18n="opt_outro_auto">           🪄            Auto (Maestro's Rec)</option>
+<option value="انسحاب هادئ (تلاشي)" data-i18n="opt_outro_fade">           📉            Smooth Fade-out</option>
+<option value="قفلة حاسمة (سكتة)" data-i18n="opt_outro_stop">           🛑            Abrupt Stop</option>
+<option value="نهاية فخمة (ملحمية)" data-i18n="opt_outro_epic">           🏛️            Epic Grand Finale</option>
+<option value="هدوء تام (نهاية ناعمة)" data-i18n="opt_outro_soft">           🍃            Soft Landing</option>
+<option value="زيادة الحماس (تصاعد)" data-i18n="opt_outro_crescendo">           📈            Building Intensity</option>
+<option value="ارتجال غنائي (آهات)" data-i18n="opt_outro_vocal">           🎤            Vocal Ad-libs</option>
+<option value="عزف منفرد (صولو)" data-i18n="opt_outro_solo">           🎻            Instrumental Solo</option>
+</select>
+<textarea id="outro" class="neon-box lyric-input" rows="3" data-i18n-placeholder="pl_outro" placeholder="Outro lyrics (optional)..." data-limit="500"></textarea>
+</div>
+<button class="btn-3d" id="generatePromptBtn">
+<span data-i18n="btn_generate">           🪄            Generate Prompt (Enter)</span>
+</button>
+<div class="project-controls" id="projectManagerUI" style="margin-top: 40px;">
+<input type="text" id="projectName" class="neon-box" style="flex: 1; padding: 10px; margin: 0;" placeholder="اسم المشروع / Project Name">
+<button class="btn-blue" id="btnSaveProject" style="margin: 0;" data-i18n="btn_save_project">       💾       حفظ المشروع</button>
+<select id="loadProjectSelect" class="neon-box" style="flex: 1; padding: 10px; margin: 0;" aria-label="Load Saved Project">
+<option value="" data-i18n="opt_saved_projects">-- المشاريع المحفوظة --</option>
+</select>
+<button class="btn-success" id="btnLoadProject" style="margin: 0;" data-i18n="btn_load_project">       📂       فتح مشروع</button>
+</div>
+</div>
+</div>
+<div id="tab-outputs" class="tab-content">
+<div class="card">
+<div class="section-title"> <span data-i18n="sec_output">           💿            Music Factory Output Gallery</span></div>
+<div class="output-wrapper">
+<span class="output-label" data-i18n="out_full_lbl">3. Full Engine Prompt</span>
+<button class="btn-3d btn-blue copy-btn" data-target="out_full"> <span data-i18n="btn_copy_full">           📋            Copy Full Prompt</span></button>
+<div class="output-content" id="out_full">...</div>
+</div>
+<button class="btn-3d btn-apk" id="dynamicGenerateBtn" style="margin-top: 15px;">
+<span id="dynGenText" data-i18n="btn_dyn_gen_song">           🎧            Generate Song</span>
+</button>
+<!-- حاوية النتيجة والصوت المضافة [المرحلة 4] -->
+<div id="resultContainer" style="display: none; margin-top: 20px; text-align: center; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px; border: 1px solid var(--neon-blue);">
+    <!-- نص حالة التحميل -->
+    <p id="statusText" style="color: #ff9800; font-weight: bold; display: none; animation: blink 1s infinite;">⏳ جاري التوليد... يرجى الانتظار (قد يستغرق دقيقة)</p>
+    
+    <!-- مشغل الصوت المخفي مبدئياً -->
+    <audio id="audioPlayer" controls style="display: none; width: 100%; margin-top: 15px; filter: drop-shadow(0 0 5px var(--neon-blue));"></audio>
+    
+    <!-- زر التحميل المخفي مبدئياً -->
+    <div style="margin-top: 15px;">
+        <a id="downloadBtn" 
+   href="#" 
+   download="AI_Music.mp3" 
+   target="_blank" 
+   style="display: none; padding: 12px 25px; background: linear-gradient(45deg, #4CAF50, #2E7D32); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 15px rgba(76,175,80,0.3); transition: 0.3s;">
+   ⬇️ تحميل المقطع الصوتي (MP3)
+</a>
+    </div>
+</div>
+<div style="display: flex; gap: 10px; margin-top: 15px;">
+<button class="btn-3d btn-success" id="restoreFieldsBtn" style="padding: 10px; font-size: 14px; flex: 1;"> <span data-i18n="btn_restore">           ↩️            Restore (Ctrl+Z)</span></button>
+</div>
+<div id="mp3DownloadSection" style="display: none; margin-top: 25px; padding-top: 20px; padding-bottom: 25px;">
+    <span style="color: var(--gold); font-weight: bold; font-size: 1.1em; display:block; margin-bottom:10px;" data-i18n="mp3_download_title">Download MP3</span>
+<div style="display:flex; align-items:center; gap:15px; flex-wrap:wrap;">
+<select id="mp3Quality" class="neon-box" style="width:220px; margin:0;" aria-label="MP3 Quality">
+<option value="128" data-i18n="opt_mp3_128">Standard Quality (128 kbps)</option>
+<option value="256" data-i18n="opt_mp3_256">High Quality (256 kbps)</option>
+<option value="320" data-i18n="opt_mp3_320">Studio Quality (320 kbps)</option>
+</select>
+<button class="btn-3d btn-success" id="downloadMp3Btn" style="width:auto; margin:0;"> <span data-i18n="btn_download_mp3">           ⬇️            Download Track</span></button>
+</div>
+</div>
+<div style="border-top: 2px solid var(--gold); padding-top: 25px;">
+<div class="section-title"> <span data-i18n="sec_export_others">           💿            Export to Other Generators</span></div>
+<div class="output-wrapper" id="lyricsOutputWrapper">
+<span class="output-label"><span data-i18n="out_lyrics_lbl">1. Lyrics Prompt</span> <span id="outCountL" class="char-counter" style="float:none; margin:0 10px;">0 / 3000</span></span>
+<button class="btn-3d btn-blue copy-btn" data-target="out_lyrics"> <span data-i18n="btn_copy_lyrics">           📋            Copy Lyrics</span></button>
+<div class="output-content" id="out_lyrics">...</div>
+</div>
+<div class="output-wrapper">
+<span class="output-label" data-i18n="out_style_lbl">2. Style Prompt</span>
+<button class="btn-3d btn-blue copy-btn" data-target="out_style"> <span data-i18n="btn_copy_style">           📋            Copy Style</span></button>
+<div class="output-content" id="out_style">...</div>
+</div>
+</div>
+<div style="margin-top: 30px; text-align: center;">
+<button class="btn-blue" id="openSunoBtn" style="margin:0; border-radius:10px; font-size: 18px; padding: 15px 30px;">           🚀            Suno AI</button>
+</div>
+</div>
+</div>
+</div>
+
+<div id="onboardingOverlay" class="onboarding-overlay">
+<div class="card" style="max-width: 500px; width: 90%; text-align: center; position: relative;">
+<div class="ob-step active" id="ob-step-0">
+<h2 data-i18n="ob_welcome">Welcome to Music Factory</h2>
+<p data-i18n="ob_welcome_desc" style="color:var(--text-color);">Your ultimate AI music prompt engineering tool.</p>
+</div>
+<div class="ob-step" id="ob-step-1" style="display:none;">
+<h2 data-i18n="ob_lyrics">1. Lyrics Input</h2>
+<p data-i18n="ob_lyrics_desc" style="color:var(--text-color);">Enter your lyrics or drag & drop a file to auto-distribute them.</p>
+</div>
+<div class="ob-step" id="ob-step-2" style="display:none;">
+<h2 data-i18n="ob_melody">2. Studio</h2>
+<p data-i18n="ob_melody_desc" style="color:var(--text-color);">Select your rhythm, mood, and style from the Studio, or use the Prompt Library.</p>
+</div>
+<div class="ob-step" id="ob-step-3" style="display:none;">
+<h2 data-i18n="ob_generate">3. Generate Prompt</h2>
+<p data-i18n="ob_generate_desc" style="color:var(--text-color);">Hit generate to get your ready-to-use prompts for Suno AI!</p>
+</div>
+<div style="display: flex; justify-content: space-between; margin-top: 30px;">
+<button class="btn-danger" id="ob-skip" style="width: auto; padding: 10px 20px;" data-i18n="ob_skip">Skip</button>
+<div style="display: flex; gap: 10px;">
+<button class="btn-blue" id="ob-back" style="width: auto; padding: 10px 20px; display:none;" data-i18n="ob_back">Back</button>
+<button class="btn-success" id="ob-next" style="width: auto; padding: 10px 20px;" data-i18n="ob_next">Next</button>
+<button class="btn-success" id="ob-finish" style="width: auto; padding: 10px 20px; display:none;" data-i18n="ob_finish">Finish</button>
+</div>
+</div>
+</div>
+<div id="toast" aria-live="polite"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.21/mammoth.browser.min.js"></script>
+<script src="script.js"></script>
+<div class="maestro-assistant-wrapper">
+    <button id="maestroFab" class="maestro-fab" aria-label="Open Assistant">
+        <span class="fab-icon">🤖</span>
+    </button>
+    <div id="maestroChatWindow" class="maestro-chat-window">
+        <div class="maestro-chat-header">
+            <span data-i18n="ast_title">Maestro Assistant</span>
+            <button id="maestroCloseBtn" class="maestro-close">&times;</button>
+        </div>
+        <div id="maestroChatBody" class="maestro-chat-body">
+            <div class="maestro-msg ai" data-i18n="ast_welcome">Hello! How can I help you with your music today?</div>
+        </div>
+        <div class="maestro-chat-footer">
+            <input type="text" id="maestroChatInput" class="neon-box" data-i18n-placeholder="ast_placeholder" placeholder="Type a message...">
+            <button id="maestroSendBtn" class="btn-blue" style="margin-top:0;" data-i18n="ast_send">Send</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

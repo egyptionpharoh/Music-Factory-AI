@@ -1,0 +1,227 @@
+{
+  "knowledge_base": {
+    "section_1_basics_ui": {
+      "title_ar": "الأساسيات وواجهة المستخدم",
+      "title_en": "Basics & UI",
+      "keywords": ["منصة", "فوائد", "مشروع جديد", "غنائي", "موسيقى تصويرية", "بداية", "Platform", "Benefits", "New Project", "Vocal", "Instrumental"],
+      "questions": [
+        {"id": 1, "q_ar": "إيه هي منصة Music Factory AI وفائدتها؟", "q_en": "What is Music Factory AI and its benefits?", "a_ar": "هي منصة احترافية لهندسة أوامر الذكاء الاصطناعي الموسيقية، بتمكنك من تحويل أفكارك لهياكل برومبت دقيقة.", "a_en": "It is a professional musical AI prompt engineering platform, enabling you to turn ideas into precise prompt structures."},
+        {"id": 2, "q_ar": "إزاي أبدأ مشروع جديد وإيه الأنواع المتاحة؟", "q_en": "How to start a project and what are the available types?", "a_ar": "من زرار 'إنشاء مشروع'، وتقدر تختار بين تراك غنائي أو موسيقى تصويرية.", "a_en": "From the 'Create Project' button, choose between a Vocal track with lyrics or an Instrumental track."},
+        {"id": 3, "q_ar": "هل أقدر أرفع ملفات خارجية للمنصة؟", "q_en": "Can I upload external files to the platform?", "a_ar": "أيوة، المنصة بتدعم سحب وإفلات ملفات TXT, DOCX, PDF, JSON.", "a_en": "Yes, the platform supports drag-and-drop for TXT, DOCX, PDF, JSON files."},
+        {"id": 4, "q_ar": "إيه اللي بيحصل أول ما أفتح الموقع؟", "q_en": "What happens on first visit?", "a_ar": "جولة تعريفية تفاعلية بتوضح لك الواجهة والخطوات.", "a_en": "Interactive onboarding tour highlights the interface and steps."},
+        {"id": 5, "q_ar": "إيه وظيفة زر 'إنشاء مشروع جديد'؟", "q_en": "What does 'Create New Project' button do?", "a_ar": "يفتح الخيارات الأساسية للبدء في مشروع جديد.", "a_en": "It opens basic options to start a new project."}
+      ]
+    },
+    "section_2_studio_maestro": {
+      "title_ar": "الاستوديو والمايسترو المساعد",
+      "title_en": "Studio & Maestro",
+      "keywords": ["المايسترو", "مستشار", "مقامات", "إيقاعات", "توافق", "خبير", "Maestro", "Advisor", "Maqams", "Rhythms", "Compatibility"],
+      "questions": [
+        {"id": 6, "q_ar": "إيه دور المايسترو الذكي في الاستوديو؟", "q_en": "What is the Smart Maestro's role in the studio?", "a_ar": "أنا مستشارك الفني؛ بقرأ إعداداتك، بقترح مقامات وإيقاعات متوافقة، وبقدر أنفذ الأوامر برمجياً لو سمحت لي.", "a_en": "I am your artistic advisor; I read your settings, suggest compatible maqams and rhythms, and can execute commands programmatically with your permission."},
+        {"id": 7, "q_ar": "إيه هو مؤشر التوافق الموسيقي؟", "q_en": "What is the Musical Compatibility Indicator?", "a_ar": "نظام ذكي بيراجع اختياراتك ويعطيك تنبيه لو في تعارض لضمان جودة اللحن.", "a_en": "A smart system that reviews your choices and gives alerts if there is conflict to ensure melody quality."},
+        {"id": 8, "q_ar": "هل لازم أكون خبير موسيقي لاستخدام الاستوديو؟", "q_en": "Do I need to be a music expert to use the studio?", "a_ar": "لأ، فيه مكتبة أنماط جاهزة تساعد غير المتخصصين.", "a_en": "No, there is a Preset Library to help non-experts."},
+        {"id": 9, "q_ar": "إيه الفرق بين التنفيذ المباشر والمشورة؟", "q_en": "What is the difference between direct execution and advice?", "a_ar": "المشورة نصيحة فقط، التنفيذ المباشر يغير الإعدادات فوراً.", "a_en": "Advice is guidance only; direct execution changes settings immediately."}
+      ]
+    },
+    "section_3_generation_engine": {
+      "title_ar": "محرك التوليد وصناعة الكلمات",
+      "title_en": "Generation Engine & Lyrics",
+      "keywords": ["توليد", "برومبت", "كلمات", "تعديل", "نمط", "مصفوفة", "Generate", "Prompt", "Lyrics", "Matrix", "Style"],
+      "questions": [
+        {"id": 10, "q_ar": "إزاي بيتم توليد البرومبت النهائي؟", "q_en": "How is the final prompt generated?", "a_ar": "بعد ضبط الكلمات والإعدادات، بضغط 'توليد'، والمحرك بيدمج كل العناصر.", "a_en": "After setting lyrics and parameters, click 'Generate', and the engine merges all elements."},
+        {"id": 11, "q_ar": "يعني إيه Priority Matrix في التوليد؟", "q_en": "What is the Priority Matrix in generation?", "a_ar": "هي مصفوفة بتحدد ترتيب العناصر في البرومبت.", "a_en": "A matrix that determines the order of elements in the prompt."},
+        {"id": 12, "q_ar": "إزاي أقدر أعدل كلمات الأغنية أثناء التوليد؟", "q_en": "How can I edit lyrics during generation?", "a_ar": "من خانة 'تعديل الكلمات' قبل الضغط على 'توليد'.", "a_en": "Use the 'Edit Lyrics' field before clicking 'Generate'."},
+        {"id": 13, "q_ar": "هل ممكن أغير نمط البرومبت بعد التوليد؟", "q_en": "Can I change prompt style after generation?", "a_ar": "أيوة، من قائمة 'Style'.", "a_en": "Yes, from the 'Style' menu."}
+      ]
+    },
+    "section_4_settings_management": {
+      "title_ar": "الإعدادات وإدارة المشاريع",
+      "title_en": "Settings & Management",
+      "keywords": ["حفظ", "تلقائي", "إعادة ضبط", "مشاركة", "لوحة تحكم", "Save", "Auto-save", "Reset", "Share", "Dashboard"],
+      "questions": [
+        {"id": 14, "q_ar": "إزاي بحافظ على شغلي من الضياع؟", "q_en": "How do I keep my work from being lost?", "a_ar": "فيه حفظ تلقائي وإمكانية الحفظ اليدوي.", "a_en": "Auto-save system and manual saving."},
+        {"id": 15, "q_ar": "إيه اللي بيحصل لو غيرت الإعدادات بالغلط؟", "q_en": "What happens if I change settings by mistake?", "a_ar": "في خيار إعادة الضبط.", "a_en": "Reset option restores defaults."},
+        {"id": 16, "q_ar": "هل ممكن أشارك مشروع مع زميل؟", "q_en": "Can I share a project with a colleague?", "a_ar": "أيوة، تقدر تصدر الرابط.", "a_en": "Yes, export a project link."},
+        {"id": 17, "q_ar": "إيه وظيفة لوحة التحكم في المشروع؟", "q_en": "What is the project dashboard for?", "a_ar": "عرض حالة المشروع والملفات.", "a_en": "Shows project status and files."}
+      ]
+    },
+    "section_5_prompt_library": {
+      "title_ar": "مكتبة البرومبتات الاحترافية",
+      "title_en": "Prompt Library",
+      "keywords": ["مكتبة", "أنماط", "قوالب", "مخصص", "إضافة", "Library", "Presets", "Templates", "Custom"],
+      "questions": [
+        {"id": 18, "q_ar": "إيه هي مكتبة الأنماط الجاهزة؟", "q_en": "What is the Preset Library?", "a_ar": "مجموعة قوالب موسيقية جاهزة بضغطة واحدة.", "a_en": "A collection of ready musical templates."},
+        {"id": 19, "q_ar": "إزاي أقدر أضيف برومبت جديد للمكتبة؟", "q_en": "How can I add a new prompt to the library?", "a_ar": "من زرار إضافة جديد.", "a_en": "Click Add New."},
+        {"id": 20, "q_ar": "إيه الفرق بين البرومبت الجاهز والمخصص؟", "q_en": "What is the difference between preset and custom prompts?", "a_ar": "الجاهز فوري، المخصص تصممه بنفسك.", "a_en": "Preset is ready; custom is user-designed."}
+      ]
+    },
+    "section_6_semantic_translation": {
+      "title_ar": "محرك الترجمة الدلالية",
+      "title_en": "Semantic Translation",
+      "keywords": ["ترجمة", "مصطلحات", "دلالية", "عالمية", "Translation", "Semantic", "Terms", "Global"],
+      "questions": [
+        {"id": 21, "q_ar": "ليه المنصة بتترجم المصطلحات الموسيقية؟", "q_en": "Why does the platform translate musical terms?", "a_ar": "لضمان فهم النماذج العالمية.", "a_en": "To ensure global model understanding."},
+        {"id": 22, "q_ar": "إزاي أقدر أضيف مصطلح جديد للترجمة؟", "q_en": "How can I add a new term for translation?", "a_ar": "من لوحة إدارة المصطلحات.", "a_en": "Use Term Management."}
+      ]
+    },
+    "section_7_ui_feedback": {
+      "title_ar": "نظام الاستجابة البصرية",
+      "title_en": "UI Feedback",
+      "keywords": ["ألوان", "نيون", "هوية بصرية", "إعدادات", "Neon", "Visual", "UI", "Identity"],
+      "questions": [
+        {"id": 23, "q_ar": "إيه سر ألوان النيون؟", "q_en": "Why neon colors?", "a_ar": "هوية بصرية تفاعلية.", "a_en": "Interactive visual identity."},
+        {"id": 24, "q_ar": "إزاي أتحكم فيها؟", "q_en": "How to control visuals?", "a_ar": "من الإعدادات البصرية.", "a_en": "From visual settings."}
+      ]
+    },
+    "section_8_export_suite": {
+      "title_ar": "تصدير الملفات",
+      "title_en": "Export Suite",
+      "keywords": ["تصدير", "ملفات", "صيغ", "MP3", "ZIP", "Export", "Formats", "Download"],
+      "questions": [
+        {"id": 25, "q_ar": "إيه أنواع التصدير؟", "q_en": "Export types?", "a_ar": "TXT, PDF, JSON, MP3.", "a_en": "TXT, PDF, JSON, MP3."},
+        {"id": 26, "q_ar": "هل ممكن ZIP؟", "q_en": "ZIP export?", "a_ar": "نعم يمكنك تصدير ملفات المشروع كاملة بصيغة  ZIP  مضغوطة لسهولة الحفظ والمشاركة.", "a_en": "Yes, you can export the entire project files as a compressed ZIP file for easy storage and sharing."}
+      ]
+    },
+    "section_9_component_merging": {
+      "title_ar": "دمج العناصر",
+      "title_en": "Component Merging",
+      "keywords": ["دمج", "تجميع", "هيكل", "محرك", "Merging", "Components", "Structure"],
+      "questions": [
+        {"id": 27, "q_ar": "إزاي بيتم الدمج؟", "q_en": "How merging works?", "a_ar": "يعمل محرك الدمج الذكي على تجميع الكلمات، المقامات، والإيقاعات بشكل متناغم لإنتاج الهيكل النهائي للبرومبت بدقة.", "a_en": "The smart merging engine seamlessly combines lyrics, maqams, and rhythms to accurately produce the final prompt structure."}
+      ]
+    },
+    "section_10_failover_system": {
+      "title_ar": "نظام الطوارئ",
+      "title_en": "Failover System",
+      "keywords": ["طوارئ", "عطل", "احتياطي", "سيرفر", "Failover", "Backup", "Emergency", "Server"],
+      "questions": [
+        {"id": 28, "q_ar": "ماذا يحدث عند العطل؟", "q_en": "What happens on failure?", "a_ar": "بيحولك تلقائيًا إلى موديل أو سيرفر احتياطي في حالة حدوث أي عطل، لضمان استمرارية العمل بدون انقطاع نظام Failover.", "a_en": "It automatically redirects you to a backup model or server in case of any failure, ensuring uninterrupted workflow through the Failover system."}
+      ]
+    },
+    "section_11_localization": {
+      "title_ar": "التعريب",
+      "title_en": "Localization",
+      "keywords": ["تعريب", "لغات", "تبديل", "ديناميكي", "Localization", "Languages", "I18n", "Switch"],
+      "questions": [
+        {"id": 29, "q_ar": "هل يدعم لغات أخرى؟", "q_en": "Other languages?", "a_ar": "نعم المنصة تدعم نظام تعريب ديناميكي(I18n) يسمح بالتبديل الكامل بين اللغات مثل العربية والإنجليزية مع تحديث الواجهة فورًا.", "a_en": "Yes, the platform supports a dynamic localization system (I18n) that allows seamless switching between languages, like Arabic and English, instantly updating the interface."}
+      ]
+    },
+    "section_12_identity_execution": {
+      "title_ar": "الهوية والأوامر",
+      "title_en": "Identity & Commands",
+      "keywords": ["هوية", "أوامر", "برمجية", "المايسترو", "تحكم", "Identity", "Commands", "Functions", "Maestro"],
+      "details_ar": "يمكنك إما توليد اللحن مباشرة من داخل المنصة، أو استخدام البرومبت النهائي مع نماذج أخرى. كما أقوم بتحليل اختياراتك الموسيقية، وتقديم اقتراحات ذكية، وتنفيذ الأوامر برمجياً بعد موافقتك.",
+      "details_en": "You can either generate the melody directly within the platform or use the final prompt with other models. I also analyze your musical choices, provide smart suggestions, and execute commands programmatically after your approval.",
+      "questions": [
+{"id": 30, "q_ar": "مين المايسترو؟", "q_en": "Who is Maestro?", "a_ar": "أنا المايسترو الذكي، المساعد الرسمي لمنصة Music Factory AI، قام بتطويري وبرمجتي الملحن والمهندس حسين الملك، لأساعدك في تحويل أفكارك لألحان احترافية", "a_en": "I am the Smart Maestro, the official assistant of Music Factory AI, developed by Hussein Elmalek to help you transform your ideas into professional melodies."},        {"id": 31, "q_ar": "إيه الأوامر؟", "q_en": "Commands?", "a_ar": "مجموعة أوامر برمجية تشمل: setMaqam لتحديد المقام، setRhythm لاختيار الإيقاع، setStyle لتغيير النمط، updateInput لتعديل الكلمات، و showMessage لعرض التنبيهات.", "a_en": "A set of programmatic commands including: setMaqam to select the maqam, setRhythm to choose the rhythm, setStyle to change the style, updateInput to modify lyrics, and showMessage to display alerts."}
+      ]
+    },
+    "section_13_lyricist_identity": {
+      "title_ar": "مستشار الكلمات (الشاعر)",
+      "title_en": "Lyrics Consultant (The Lyricist)",
+      "keywords": ["شعر", "كلمات", "قافية", "مشاعر", "تأليف", "Lyrics", "Poetry", "Rhyme", "Emotions", "Songwriting"],
+      "details_ar": "أنا خبيرك اللغوي؛ أساعدك في صياغة الكلمات، ضبط الأوزان الشعرية، واختيار المفردات التي تناسب النمط الموسيقي المختار لضمان وصول الرسالة المطلوبة.",
+      "details_en": "I am your linguistic expert; I help you craft lyrics, adjust poetic meters, and choose vocabulary that fits the selected musical style to ensure the message is delivered.",
+      "questions": [
+        {"id": 32, "q_ar": "كيف أختار كلمات تناسب لحن حزين؟", "q_en": "How to choose lyrics for a sad melody?", "a_ar": "أنصحك باستخدام استعارات مكنية هادئة وقوافي ممدودة (مثل الألف والياء) لتعزيز الإحساس بالشجن.", "a_en": "I suggest using calm metaphors and long rhymes (like A and E sounds) to enhance the sense of melancholy."}
+      ]
+    },
+    "section_14_audio_engineer_identity": {
+      "title_ar": "مهندس الصوت (التقني)",
+      "title_en": "Audio Engineer (The Tech Pro)",
+      "keywords": ["هندسة صوت", "توزيع", "ميكساج", "آلات", "جودة", "Mixing", "Mastering", "Instruments", "Audio Quality", "Technical"],
+      "details_ar": "أنا مسؤول الجودة التقنية؛ أساعدك في إضافة تفاصيل دقيقة للبرومبت مثل مستويات الصدى (Reverb)، توزيع الآلات، ونقاء الصوت الناتج.",
+      "details_en": "I am the technical quality officer; I help you add precise details to the prompt such as Reverb levels, instrument panning, and output audio clarity.",
+      "questions": [
+        {"id": 33, "q_ar": "كيف أجعل صوت الآلات يبدو كأنه في قاعة كبيرة؟", "q_en": "How to make instruments sound like they are in a large hall?", "a_ar": "أضف مصطلح 'Concert Hall Reverb' أو 'High Ambience' في وصف البرومبت التقني.", "a_en": "Add 'Concert Hall Reverb' or 'High Ambience' to the technical prompt description."}
+      ]
+    },
+    "section_15_composer_arranger_identity": {
+      "title_ar": "الملحن والموزع (المايسترو)",
+      "title_en": "Composer & Arranger (The Maestro)",
+      "keywords": ["تلحين", "توزيع آلي", "مقدمة", "خاتمة", "نقلة مقامية", "Orchestration", "Intro", "Outro", "Maqam Transition", "Composer"],
+      "details_ar": "أنا مستشارك في بناء الهيكل اللحني؛ أساعدك في اختيار الإيقاعات، تحديد نوع المقدمة والخاتمة، وتوزيع الآلات الموسيقية لكل مقطع مع ضمان سلاسة النقلات المقامية.",
+      "details_en": "I am your advisor in building the melodic structure; I help you choose rhythms, specify intro/outro types, and orchestrate instruments for each section while ensuring smooth maqam transitions.",
+      "questions": [
+        {"id": 34, "q_ar": "إزاي أتحكم في مقدمة وخاتمة الأغنية (Intro & Outro)؟", "q_en": "How do I control the Intro and Outro of the song?", "a_ar": "يمكنك اختيار مقدمات مثل 'دخول مفاجئ' أو 'بناء تدريجي'، وخواتيم مثل 'تلاشي هادئ' أو 'نهاية ملحمية' دون كتابة أوامر معقدة.", "a_en": "You can choose options like 'Sudden Entry' or 'Gradual Buildup' for intros, and 'Smooth Fade-out' or 'Epic Grand Finale' for outros without writing complex commands."}
+      ]
+    },
+    "section_16_security_privacy_guardian": {
+      "title_ar": "حارس الأمان والخصوصية (التقني)",
+      "title_en": "Security & Privacy Guardian (The Tech)",
+      "keywords": ["أمان", "خصوصية", "معالجة محلية", "حماية", "سبام", "Security", "Privacy", "Local Processing", "Spam", "Rate Limit"],
+      "details_ar": "أنا المسؤول عن حماية بياناتك؛ أضمن معالجة ملفاتك محلياً دون رفعها لسيرفرات خارجية، وأحمي المنصة من الإزعاج (Spam) عبر تحديد سرعة الطلبات.",
+      "details_en": "I am responsible for protecting your data; I ensure your files are processed locally without external uploads, and I protect the platform from spam by rate-limiting requests.",
+      "questions": [
+        {"id": 35, "q_ar": "إزاي الموقع بيقرا ملفات الوورد والـ PDF بتوعي وهل ده آمن؟", "q_en": "How does the app read my Word or PDF files securely?", "a_ar": "تتم المعالجة محلياً على جهازك باستخدام مكتبات مثل pdf.js و mammoth، ولا يتم رفع ملفاتك لأي سيرفر خارجي مما يضمن سرية كلماتك 100%.", "a_en": "Processing is done entirely on your device using local libraries like pdf.js and mammoth. Your files are not uploaded to any external database, keeping your lyrics 100% private."},
+        {"id": 36, "q_ar": "هل هناك حدود لسرعة الشات لتجنب السبام؟", "q_en": "Is there a limit to chat speed to prevent spam?", "a_ar": "نعم، يوجد نظام حماية (Rate Limit) يسمح بـ 10 رسائل فقط في الدقيقة لحماية السيرفر من هجمات البوتات.", "a_en": "Yes, there is a rate limit mechanism allowing 10 messages per minute to protect the server from spam and bot attacks."}
+      ]
+    },
+    "section_17_ux_accessibility_expert": {
+      "title_ar": "خبير تجربة المستخدم (الواجهة)",
+      "title_en": "UX & Accessibility Expert (Interface)",
+      "keywords": ["تجربة المستخدم", "اختصارات", "موبايل", "قارئ الشاشة", "تراجع", "UX", "Shortcuts", "Mobile", "Screen Reader", "Undo"],
+      "details_ar": "أنا مهندس الواجهة؛ أضمن لك تجربة سلسة سواء كنت تستخدم الهاتف أو الكمبيوتر، مع دعم كامل لاختصارات لوحة المفاتيح وبرامج قارئ الشاشة.",
+      "details_en": "I am the interface engineer; I ensure a smooth experience whether you use a mobile or desktop, with full support for keyboard shortcuts and screen readers.",
+      "questions": [
+        {"id": 37, "q_ar": "هل الموقع بيدعم ذوي الاحتياجات الخاصة (قارئ الشاشة)؟", "q_en": "Is the app accessible for people using Screen Readers?", "a_ar": "أيوة، الأكواد تحتوي على وسوم (ARIA labels) مخصصة لتوضيح التنبيهات وأيقونة المايسترو لبرامج قارئ الشاشة.", "a_en": "Yes, the HTML code includes aria-labels and aria-live attributes optimized for visually impaired users using assistive technologies."},
+        {"id": 38, "q_ar": "إيه هي اختصارات الكيبورد اللي بيدعمها الموقع؟", "q_en": "What keyboard shortcuts does the app support?", "a_ar": "الموقع يدعم Enter للتوليد، Ctrl+S للحفظ، و Ctrl+Z أو Ctrl+Y للتراجع عن الأخطاء في النصوص وإعادتها.", "a_en": "The app supports Enter to generate, Ctrl+S to save, and Ctrl+Z or Ctrl+Y to undo/restore cleared fields."}
+      ]
+    },
+    "section_18_inspiration_engine": {
+      "title_ar": "محرك الإلهام (العصا السحرية)",
+      "title_en": "Inspiration Engine (Magic Wand)",
+      "keywords": ["إلهام", "عصا سحرية", "قوافي", "تكملة الأغنية", "Inspiration", "Magic Wand", "Rhymes", "Writer's block"],
+      "details_ar": "أنا المنقذ في لحظات التوقف الإبداعي؛ أقدم لك اقتراحات فورية للقوافي وتكملة الأبيات عبر أداة العصا السحرية.",
+      "details_en": "I am the lifesaver during creative blocks; I provide instant rhyme suggestions and verse completions via the Magic Wand tool.",
+      "questions": [
+        {"id": 39, "q_ar": "هل المنصة بتساعدني لو مش عارف أكمل كلمات الأغنية؟", "q_en": "Does the platform help me if I get Writer's Block?", "a_ar": "أيوة، داخل محرر الكلمات توجد أيقونة 'العصا السحرية' تقترح عليك قوافي أو تكمل لك الكوبليه بضغطة واحدة.", "a_en": "Yes, inside the Lyrics Editor, there is a 'Magic Wand' icon for AI suggestions to suggest rhymes or complete the verse."}
+      ]
+    },
+    "section_19_account_sharing_manager": {
+      "title_ar": "مدير الحساب والمشاركة",
+      "title_en": "Account & Sharing Manager",
+      "keywords": ["رصيد", "مشاركة", "QR Code", "حساب", "يومي", "Credits", "Share", "Account", "Daily"],
+      "details_ar": "أنا مسؤول عن إدارة رصيدك اليومي لتوليد الألحان، وأساعدك في مشاركة إبداعاتك مع أصدقائك أو فريق عملك بضغطة زر.",
+      "details_en": "I manage your daily melody generation credits and help you share your creations with friends or your team with a single click.",
+      "questions": [
+        {"id": 40, "q_ar": "هل الموقع بيستهلك رصيد للعمليات؟", "q_en": "Does the app consume Credits?", "a_ar": "أيوة، نظام توليد الأوامر بيسحب من رصيد حسابك (الرصيد الافتراضي 10 محاولات)، وبيتجدد تلقائياً كل 24 ساعة لضمان الاستخدام العادل.", "a_en": "Yes, generating prompts utilizes a credit system (default is 10 credits), which resets every 24 hours to ensure fair usage."},
+        {"id": 41, "q_ar": "إزاي أقدر أوري النتيجة لصحابي أو فريق العمل بتاعي؟", "q_en": "How can I show my results to my team or friends?", "a_ar": "جنب زرار التحميل، في ميزة 'مشاركة الجلسة' بتطلع لك لينك مؤقت أو QR Code عشان أي حد يشوف إعداداتك ويسمع التراك.", "a_en": "Beside the download button, the 'Share Session' feature generates a temporary link or QR code so anyone can view your configuration and listen to the track."}
+      ]
+    },
+    "section_20_visual_audio_director": {
+      "title_ar": "المخرج البصري والصوتي",
+      "title_en": "Visual & Audio Director",
+      "keywords": ["مشغل صوت", "موجات", "تصور بصري", "وضع تلقائي", "ليل ونهار", "Audio Player", "Visualizer", "Auto Theme"],
+      "details_ar": "أنا أهتم بمتعة عينيك وأذنيك؛ أربط ألوان الموقع بوقت يومك، وأرسم لك شكل الموسيقى لتشعر بها بصرياً.",
+      "details_en": "I care for your visual and audio pleasure; I sync the app's colors with your local time and draw the shape of your music so you can feel it visually.",
+      "questions": [
+        {"id": 42, "q_ar": "هل أقدر أسمع وأشوف شكل الموسيقى جوه المنصة؟", "q_en": "Can I hear and see the shape of my music?", "a_ar": "أيوة، المنصة فيها مشغل صوت مدمج (Audio Player) ونظام تصور بصري (Visualizer) بيعرض موجات صوتية بتتفاعل مع الإيقاع في وقتها الحقيقي.", "a_en": "Yes, the platform includes an Integrated Audio Player and an Audio Visualizer that displays waveforms reacting to the beat in real-time."},
+        {"id": 43, "q_ar": "إيه هو الوضع التلقائي (Auto Theme)؟", "q_en": "What is the Auto Theme?", "a_ar": "ده وضع ذكي بيتربط بساعة جهازك؛ بيقلب 'ليل' لوحده بعد الغروب، و'نهار' بعد الشروق عشان يريح عينك أثناء التلحين.", "a_en": "It’s a smart mode that syncs with your device's clock; it automatically switches to Dark Mode at sunset and Light Mode at sunrise to protect your eyes while composing."}
+      ]
+    },
+    "section_21_maqam_oriental_soul": {
+      "title_ar": "خبير المقامات والروح الشرقية",
+      "title_en": "Maqam Expert & Oriental Soul",
+      "keywords": ["مقامات", "ربع تون", "شرقي", "بياتي", "راست", "إحساس", "Maqam", "Quarter Tone", "Oriental", "Authentic", "Soul"],
+      "details_ar": "أنا حارس التراث الموسيقي في المنصة؛ وظيفتي هي 'ترجمة' إحساس المقامات الشرقية (مثل ربع التون في السيكا والبياتي) إلى لغة يفهمها الذكاء الاصطناعي العالمي، لضمان خروج لحن بأصالة عربية حقيقية.",
+      "details_en": "I am the guardian of musical heritage; my job is to 'translate' the feel of Eastern Maqams (like the quarter-tones in Sika and Bayati) into a language global AI understands, ensuring an authentic Arabic musical output.",
+      "questions": [
+        {
+          "id": 44,
+          "q_ar": "إزاي المايسترو بيفهم 'ربع التون' والمقامات الشرقية المعقدة؟",
+          "q_en": "How does the Maestro understand 'Quarter Tones' and complex Eastern Maqams?",
+          "a_ar": "عن طريق 'محرك الترجمة الدلالية' اللي برمجته؛ بحول ترددات المقام لبيانات تقنية (Metadata) بتوصف للموديل العالمي مكان ربع التون بالظبط، وده اللي بيخلي اللحن يطلع 'شرقي' مش مجرد 'بيانو' عادي.",
+          "a_en": "Through the 'Semantic Translation Engine' I use; I convert Maqam frequencies into metadata that describes exact quarter-tone positions to global models, making the output truly 'Oriental' rather than just standard piano notes."
+        },
+        {
+          "id": 45,
+          "q_ar": "إيه هو المقام اللي تنصحني بيه لو عايز لحن فيه شجن مصري أصيل؟",
+          "q_en": "Which Maqam do you recommend for an authentic Egyptian sad melody?",
+          "a_ar": "أنصحك بمقام 'الصبا'؛ لأنه المقام الوحيد اللي فيه إحساس البكاء والخشوع، والمايسترو هنا متبرمج يختار له آلات 'ناي' حزينة تليق بيه.",
+          "a_en": "I recommend 'Saba' Maqam; it's the only Maqam that carries a deep sense of longing and sadness. The Maestro is programmed to pair it with soulful 'Nay' instruments."
+        }
+      ]
+    }
+  }
+}
