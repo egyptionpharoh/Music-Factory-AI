@@ -2611,33 +2611,42 @@ const ModalManager = (() => {
         }
     };
 })();
-    // 1. موديول المؤسس (تم تحديثه ليدعم جلب البيانات وتأثير التحميل)
+   // 1. موديول المؤسس (براند حسين الملك + السيرة الذاتية الكاملة)
     const FounderManager = (() => {
         const updateUI = (data, isLoading = false) => {
             const nameEl = document.querySelector('.dev-name');
             const bioEl = document.querySelector('.dev-bio p');
             const imgEl = document.querySelector('.profile-img');
             const titleEl = document.querySelector('.dev-title');
-            const footerNameEl = document.getElementById('openFounderBtn');
+            const footerNameEl = document.getElementById('openFounderBtnFooter');
 
             if (isLoading) {
                 if(nameEl) nameEl.innerText = "جاري التحميل...";
-                if(bioEl) bioEl.innerText = "لحظات ونتعرف على المايسترو...";
-                if(imgEl) imgEl.style.opacity = '0.5';
                 return; 
             }
 
-            // عرض البيانات الحقيقية
-            if(nameEl) nameEl.innerText = data.name || 'حسين الملك';
-            if(bioEl) bioEl.innerText = data.bio || 'مؤسس المنصة وموسيقي متخصص';
+            // الاسم الفني (البراند)
+            const artName = 'حسين الملك';
+            
+            // السيرة الذاتية الاحترافية تبدأ بالاسم الكامل
+            const professionalBio = `حسين محمد سيد عبدالعال هو شاعر غنائي وملحن ومبرمج تطبيقات موسيقية، وباحث أكاديمي بجامعة القاهرة، بالإضافة إلى كونه عازفاً لآلة الكونترباص. يجمع في مسيرته بين الحس الفني والخبرة التقنية، حيث عمل على تطوير رؤى موسيقية حديثة تمزج بين الإبداع الإنساني وتقنيات الذكاء الاصطناعي.
+
+له عدد من المؤلفات الغنائية والموسيقية، ويهتم بمجالات الموسيقى التعبيرية والعلاج بالموسيقى، مع تركيز خاص على توظيف التكنولوجيا لخدمة العملية الإبداعية وتوسيع فرص الوصول إلى الإنتاج الموسيقي.
+
+قام بتأسيس وبرمجة منصة “Mu | Music Factory AI” بهدف إتاحة أدوات ذكية تساعد المبدعين على تحويل أفكارهم إلى أعمال موسيقية متكاملة بسهولة واحترافية، سواء كانوا شعراء، صناع محتوى، يوتيوبرز، مخرجين سينمائيين، أو منتجي وسائط رقمية يبحثون عن موسيقى تصويرية وألحان تعبر عن رؤيتهم الفنية.`;
+
+            // التنفيذ
+            if(nameEl) nameEl.innerText = artName; // هنا هيفضل "حسين الملك"
+            if(bioEl) bioEl.innerText = professionalBio; // هنا السيرة الذاتية الكاملة
+            
             if(imgEl) {
                 imgEl.src = data.imageUrl || 'my-photo.jpg';
                 imgEl.style.opacity = '1';
             }
-            if(titleEl) titleEl.innerText = data.title || 'Founder';
+            if(titleEl) titleEl.innerText = 'Founder & Lead Architect';
 
             if(footerNameEl) {
-                footerNameEl.innerHTML = `فكرة وبرمجة: ${data.name || 'حسين الملك'}`;
+                footerNameEl.innerText = artName; // الاسم في الفوتر برضه "حسين الملك"
             }
         };
 
@@ -2647,39 +2656,24 @@ const ModalManager = (() => {
                 const data = await NetworkManager.publicFetch('/api/founder');
                 updateUI(data);
             } catch (err) {
-                console.error("فشل تحميل بيانات المؤسس، عرض البيانات الافتراضية");
-                updateUI({ 
-                    name: "حسين الملك", 
-                    bio: "مؤسس المنصة وموسيقي متخصص", 
-                    imageUrl: "my-photo.jpg", 
-                    title: "Founder & Lead Architect" 
-                });
+                updateUI({}); 
             }
         };
 
         const setupEvents = () => {
-            const founderBtn = document.getElementById('openFounderBtn');
+            const founderBtn = document.getElementById('openFounderBtnFooter');
             const modal = document.getElementById('founderModal');
             const closeBtn = document.querySelector('.close-founder');
-
             if(founderBtn && modal) {
                 founderBtn.onclick = (e) => {
                     e.preventDefault();
                     modal.classList.add('active');
-                    if (typeof MaestroAssistantManager !== 'undefined') {
-                        MaestroAssistantManager.say("تعرف على المايسترو حسين الملك، مؤسس هذه المنصة");
-                    }
                 };
             }
             if(closeBtn && modal) closeBtn.onclick = () => modal.classList.remove('active');
         };
 
-        return {
-            init: () => {
-                fetchFounderData();
-                setupEvents();
-            }
-        };
+        return { init: () => { fetchFounderData(); setupEvents(); } };
     })();
     // 2. تعديل دالة الـ init الرئيسية عشان تنادي عليه
     return {
