@@ -2622,16 +2622,12 @@ const ModalManager = (() => {
 
             if (isLoading) {
                 if(nameEl) nameEl.innerText = "جاري التحميل...";
-                return;
-            }
-                // شاشة تحميل بسيطة من غير أي إضافات في الـ HTML
-                if(nameEl) nameEl.innerText = "جاري التحميل...";
                 if(bioEl) bioEl.innerText = "لحظات ونتعرف على المايسترو...";
-                if(imgEl) imgEl.style.opacity = '0.5'; // تبهيت الصورة وقت التحميل
-                return;
+                if(imgEl) imgEl.style.opacity = '0.5';
+                return; 
             }
 
-            // عرض البيانات الحقيقية أو الافتراضية
+            // عرض البيانات الحقيقية
             if(nameEl) nameEl.innerText = data.name || 'حسين الملك';
             if(bioEl) bioEl.innerText = data.bio || 'مؤسس المنصة وموسيقي متخصص';
             if(imgEl) {
@@ -2640,15 +2636,14 @@ const ModalManager = (() => {
             }
             if(titleEl) titleEl.innerText = data.title || 'Founder';
 
-            // 🎯 تحديث الاسم في الفوتر بره (لو موجود)
             if(footerNameEl) {
                 footerNameEl.innerHTML = `فكرة وبرمجة: ${data.name || 'حسين الملك'}`;
+            }
         };
 
         const fetchFounderData = async () => {
             updateUI({}, true); 
             try {
-                // استخدمنا NetworkManager عشان يروح للرابط بتاع Railway المظبوط
                 const data = await NetworkManager.publicFetch('/api/founder');
                 updateUI(data);
             } catch (err) {
@@ -2669,7 +2664,7 @@ const ModalManager = (() => {
 
             if(founderBtn && modal) {
                 founderBtn.onclick = (e) => {
-                    e.preventDefault(); // عشان ميعملش ريفريش للصفحة
+                    e.preventDefault();
                     modal.classList.add('active');
                     if (typeof MaestroAssistantManager !== 'undefined') {
                         MaestroAssistantManager.say("تعرف على المايسترو حسين الملك، مؤسس هذه المنصة");
