@@ -2618,8 +2618,12 @@ const ModalManager = (() => {
             const bioEl = document.querySelector('.dev-bio p');
             const imgEl = document.querySelector('.profile-img');
             const titleEl = document.querySelector('.dev-title');
+            const footerNameEl = document.getElementById('openFounderBtn');
 
             if (isLoading) {
+                if(nameEl) nameEl.innerText = "جاري التحميل...";
+                return;
+            }
                 // شاشة تحميل بسيطة من غير أي إضافات في الـ HTML
                 if(nameEl) nameEl.innerText = "جاري التحميل...";
                 if(bioEl) bioEl.innerText = "لحظات ونتعرف على المايسترو...";
@@ -2629,27 +2633,29 @@ const ModalManager = (() => {
 
             // عرض البيانات الحقيقية أو الافتراضية
             if(nameEl) nameEl.innerText = data.name || 'حسين الملك';
-            if(bioEl) bioEl.innerText = data.bio || 'مؤسس المنصة';
+            if(bioEl) bioEl.innerText = data.bio || 'مؤسس المنصة وموسيقي متخصص';
             if(imgEl) {
                 imgEl.src = data.imageUrl || 'my-photo.jpg';
-                imgEl.style.opacity = '1'; // إرجاع إضاءة الصورة
+                imgEl.style.opacity = '1';
             }
             if(titleEl) titleEl.innerText = data.title || 'Founder';
+
+            // 🎯 تحديث الاسم في الفوتر بره (لو موجود)
+            if(footerNameEl) {
+                footerNameEl.innerHTML = `فكرة وبرمجة: ${data.name || 'حسين الملك'}`;
         };
 
         const fetchFounderData = async () => {
-            updateUI({}, true); // تشغيل حالة التحميل أول حاجة
+            updateUI({}, true); 
             try {
-                const response = await fetch('/api/founder');
-                if (!response.ok) throw new Error("Network error");
-                const data = await response.json();
+                // استخدمنا NetworkManager عشان يروح للرابط بتاع Railway المظبوط
+                const data = await NetworkManager.publicFetch('/api/founder');
                 updateUI(data);
             } catch (err) {
-                console.error("فشل تحميل بيانات المؤسس، سيتم عرض البيانات الافتراضية");
-                // الـ Fallback في حالة السيرفر وقع عشان الواجهة متضربش
+                console.error("فشل تحميل بيانات المؤسس، عرض البيانات الافتراضية");
                 updateUI({ 
                     name: "حسين الملك", 
-                    bio: "مؤسس المنصة", 
+                    bio: "مؤسس المنصة وموسيقي متخصص", 
                     imageUrl: "my-photo.jpg", 
                     title: "Founder & Lead Architect" 
                 });
@@ -2662,9 +2668,9 @@ const ModalManager = (() => {
             const closeBtn = document.querySelector('.close-founder');
 
             if(founderBtn && modal) {
-                founderBtn.onclick = () => {
+                founderBtn.onclick = (e) => {
+                    e.preventDefault(); // عشان ميعملش ريفريش للصفحة
                     modal.classList.add('active');
-                    // الربط مع المايسترو
                     if (typeof MaestroAssistantManager !== 'undefined') {
                         MaestroAssistantManager.say("تعرف على المايسترو حسين الملك، مؤسس هذه المنصة");
                     }
