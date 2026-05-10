@@ -624,10 +624,30 @@ value="60" min="5" max="600" step="5" readonly aria-label="Duration">
                 <button class="btn-success" id="ob-finish" style="width: auto; padding: 10px 20px; display:none;" data-i18n="ob_finish">Finish</button>
             </div>
         </div>
-    </div> </div> <footer>
-    <p>Created with <span>❤️</span> by Hussein Elmalek</p>
+    </div> </div>
+    <footer>
+    <p>Crafted with <span>❤️</span> by <a href="#" id="openFounderModal" style="color: var(--gold); text-decoration: none;">Hussein Elmalek</a></p>
 </footer>
-
+<div id="founderModal" class="modal-overlay">
+    <div class="card about-card" style="max-width: 500px; border: 1px solid var(--neon-blue);">
+        <button id="closeFounderModal" class="maestro-close" style="position: absolute; top: 10px; left: 10px;">&times;</button>
+        
+        <div class="profile-img-wrapper" style="width: 120px; height: 120px;">
+            <img src="my-photo.jpg" alt="Hussein Elmalek" class="profile-img">
+        </div>
+        
+        <h2 class="dev-name" style="font-size: 1.5rem;">Hussein Elmalek</h2>
+        <p class="dev-title" style="margin-bottom: 15px;">Founder & Lead Architect</p>
+        
+        <div class="dev-bio" style="font-size: 0.95rem; text-align: justify; direction: rtl; padding: 0 10px;">
+            <p>ملحن وباحث موسيقي، متخصص في تطويع الذكاء الاصطناعي لخدمة الإبداع الفني. تهدف Music Factory AI إلى سد الفجوة بين التقنية والهوية الموسيقية العربية.</p>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <a href="mailto:hussien.elmalek@gmail.com" class="btn-blue" style="padding: 8px 20px; font-size: 14px;">Contact Founder</a>
+        </div>
+    </div>
+</div>
 <div id="toast" aria-live="polite"></div>
 
 <div class="maestro-assistant-wrapper">

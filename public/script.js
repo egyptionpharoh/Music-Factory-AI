@@ -2392,7 +2392,8 @@ const data = await NetworkManager.authenticatedFetch('/api/chat', { // رجعن�
             init: () => {
                 cacheDOM();
                 bindEvents();
-            }
+            },
+            say: (text) => addMessage(text, 'ai') // السطر ده هيخلي المايسترو يتكلم عادي جداً
         };
     })();
 const MusicLibraryManager = (() => {
@@ -2598,7 +2599,84 @@ const ModalManager = (() => {
         }
     };
 })();
-// 🔥 هذا هو الجزء الحرج المفقود الذي يربط النظام بأكمله 🔥
+    // 1. موديول المؤسس (تم تحديثه ليدعم جلب البيانات وتأثير التحميل)
+    const FounderManager = (() => {
+        const updateUI = (data, isLoading = false) => {
+            const nameEl = document.querySelector('.dev-name');
+            const bioEl = document.querySelector('.dev-bio p');
+            const imgEl = document.querySelector('.profile-img');
+            const titleEl = document.querySelector('.dev-title');
+
+            if (isLoading) {
+                if(nameEl) nameEl.innerText = "جاري التحميل...";
+                if(bioEl) bioEl.innerText = "لحظات ونتعرف على المايسترو...";
+                if(imgEl) imgEl.style.opacity = '0.5'; 
+                return;
+            }
+
+            if(nameEl) nameEl.innerText = data.name || 'حسين الملك';
+            if(bioEl) bioEl.innerText = data.bio || 'مؤسس المنصة';
+            if(imgEl) {
+                imgEl.src = data.imageUrl || 'my-photo.jpg';
+                imgEl.style.opacity = '1'; 
+            }
+            if(titleEl) titleEl.innerText = data.title || 'Founder';
+        };
+
+        const fetchFounderData = async () => {
+            updateUI({}, true); 
+            try {
+                const response = await fetch('/api/founder');
+                if (!response.ok) throw new Error("Network error");
+                const data = await response.json();
+                updateUI(data);
+            } catch (err) {
+                console.error("فشل تحميل بيانات المؤسس، سيتم عرض البيانات الافتراضية");
+                updateUI({ 
+                    name: "حسين الملك", 
+                    bio: "مؤسس المنصة", 
+                    imageUrl: "my-photo.jpg", 
+                    title: "Founder & Lead Architect" 
+                });
+            }
+        };
+
+        const setupEvents = () => {
+            const modal = document.getElementById('founderModal');
+            const openBtn = document.getElementById('openFounderModal');
+            const closeBtn = document.getElementById('closeFounderModal');
+
+            if (openBtn && modal && closeBtn) {
+                openBtn.onclick = (e) => {
+                    e.preventDefault();
+                    modal.classList.add('active');
+                    // الربط مع المايسترو
+                    if (typeof MaestroAssistantManager !== 'undefined') {
+                        MaestroAssistantManager.say("تعرف على المايسترو حسين الملك، مؤسس هذه المنصة");
+                    }
+                };
+
+                closeBtn.onclick = () => {
+                    modal.classList.remove('active');
+                };
+
+                window.addEventListener('click', (event) => {
+                    if (event.target == modal) {
+                        modal.classList.remove('active');
+                    }
+                });
+            }
+        };
+
+        return {
+            init: () => {
+                fetchFounderData();
+                setupEvents();
+            }
+        };
+    })();
+
+    // 2. تعديل دالة الـ init الرئيسية عشان تنادي عليه
     return {
         init: () => {
             UIController.cacheDOM();
@@ -2618,9 +2696,14 @@ const ModalManager = (() => {
             OnboardingManager.init();
             MaestroAssistantManager.init();
             if (typeof MusicLibraryManager !== 'undefined') MusicLibraryManager.init();
+            
+            // نداء لموديول المؤسس هنا
+            FounderManager.init(); 
         }
     };
-})(); // <-- هذا القوس يغلق الموديول الرئيسي App بالكامل
+
+})(); // قفلة الـ App
+
 document.addEventListener("DOMContentLoaded", () => {
     App.init(); 
 });

@@ -11,7 +11,7 @@ const rateLimit = require('express-rate-limit');
 const authRoutes = require('./routes/authRoutes');
 const songRoutes = require('./routes/songRoutes');
 const chatRoutes = require('./routes/chatRoutes');
-
+const founderRoutes = require('./routes/founderRoutes');
 const app = express();
 app.set('trust proxy', 1);
 const isProd = process.env.NODE_ENV === 'production';
@@ -107,7 +107,7 @@ mongoose.connect(process.env.MONGO_URI)
 app.use('/api/auth', authRoutes);   // تسجيل، دخول، رصيد
 app.use('/api/songs', songRoutes); // توليد، مكتبة، تحميل، حذف
 app.use('/api/chat', chatRoutes);   // المايسترو الذكي
-
+app.use('/api/founder', founderRoutes); // بيانات المؤسس
 // عرض ملفات الفرونت إند من فولدر public
 app.use(express.static(path.join(__dirname, 'public')));
 
