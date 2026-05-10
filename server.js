@@ -9,6 +9,8 @@ const rateLimit = require('express-rate-limit');
 
 // 1. استيراد المسارات (Routes)
 const authRoutes = require('./routes/authRoutes');
+const authRoutes = require('./routes/authRoutes');
+const Founder = require('./models/Founder'); // استدعاء الموديل
 const songRoutes = require('./routes/songRoutes');
 const chatRoutes = require('./routes/chatRoutes');
 const founderRoutes = require('./routes/founderRoutes');
@@ -103,6 +105,14 @@ mongoose.connect(process.env.MONGO_URI)
         console.error('🔥 خطأ حرج في قاعدة البيانات:', err.message);
         process.exit(1); 
     });
+    app.get('/api/founder', async (req, res) => {
+    try {
+        const founder = await Founder.findOne();
+        res.json(founder || { name: "حسين الملك", bio: "مؤسس المنصة", imageUrl: "/assets/my-photo.jpg", title: "Founder" });
+    } catch (err) {
+        res.status(500).json({ error: "خطأ في جلب البيانات" });
+    }
+});
 // 7. توجيه المرور للملفات المختصة (Routing)
 app.use('/api/auth', authRoutes);   // تسجيل، دخول، رصيد
 app.use('/api/songs', songRoutes); // توليد، مكتبة، تحميل، حذف

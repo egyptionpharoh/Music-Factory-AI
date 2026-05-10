@@ -2393,7 +2393,19 @@ const data = await NetworkManager.authenticatedFetch('/api/chat', { // رجعن�
                 cacheDOM();
                 bindEvents();
             },
-            say: (text) => addMessage(text, 'ai') // السطر ده هيخلي المايسترو يتكلم عادي جداً
+            say: (text) => {
+                // 1. التأكد إن العنصر موجود في الـ HTML عشان نتجنب الإيرور
+                if (!DOM.chatBody) {
+                    console.warn("عنصر maestroChatBody غير موجود في ملف HTML!");
+                    return;
+                }
+                // 2. فتح نافذة الشات أوتوماتيك لو كانت مقفولة
+                if (DOM.chatWindow && !DOM.chatWindow.classList.contains('active')) {
+                    DOM.chatWindow.classList.add('active');
+                }
+                // 3. إضافة الرسالة
+                addMessage(text, 'ai');
+            }
         };
     })();
 const MusicLibraryManager = (() => {
@@ -2608,23 +2620,25 @@ const ModalManager = (() => {
             const titleEl = document.querySelector('.dev-title');
 
             if (isLoading) {
+                // شاشة تحميل بسيطة من غير أي إضافات في الـ HTML
                 if(nameEl) nameEl.innerText = "جاري التحميل...";
                 if(bioEl) bioEl.innerText = "لحظات ونتعرف على المايسترو...";
-                if(imgEl) imgEl.style.opacity = '0.5'; 
+                if(imgEl) imgEl.style.opacity = '0.5'; // تبهيت الصورة وقت التحميل
                 return;
             }
 
+            // عرض البيانات الحقيقية أو الافتراضية
             if(nameEl) nameEl.innerText = data.name || 'حسين الملك';
             if(bioEl) bioEl.innerText = data.bio || 'مؤسس المنصة';
             if(imgEl) {
                 imgEl.src = data.imageUrl || 'my-photo.jpg';
-                imgEl.style.opacity = '1'; 
+                imgEl.style.opacity = '1'; // إرجاع إضاءة الصورة
             }
             if(titleEl) titleEl.innerText = data.title || 'Founder';
         };
 
         const fetchFounderData = async () => {
-            updateUI({}, true); 
+            updateUI({}, true); // تشغيل حالة التحميل أول حاجة
             try {
                 const response = await fetch('/api/founder');
                 if (!response.ok) throw new Error("Network error");
@@ -2632,6 +2646,7 @@ const ModalManager = (() => {
                 updateUI(data);
             } catch (err) {
                 console.error("فشل تحميل بيانات المؤسس، سيتم عرض البيانات الافتراضية");
+                // الـ Fallback في حالة السيرفر وقع عشان الواجهة متضربش
                 updateUI({ 
                     name: "حسين الملك", 
                     bio: "مؤسس المنصة", 
@@ -2642,30 +2657,20 @@ const ModalManager = (() => {
         };
 
         const setupEvents = () => {
+            const founderBtn = document.getElementById('openFounderBtn');
             const modal = document.getElementById('founderModal');
-            const openBtn = document.getElementById('openFounderModal');
-            const closeBtn = document.getElementById('closeFounderModal');
+            const closeBtn = document.querySelector('.close-founder');
 
-            if (openBtn && modal && closeBtn) {
-                openBtn.onclick = (e) => {
-                    e.preventDefault();
+            if(founderBtn && modal) {
+                founderBtn.onclick = () => {
                     modal.classList.add('active');
                     // الربط مع المايسترو
                     if (typeof MaestroAssistantManager !== 'undefined') {
                         MaestroAssistantManager.say("تعرف على المايسترو حسين الملك، مؤسس هذه المنصة");
                     }
                 };
-
-                closeBtn.onclick = () => {
-                    modal.classList.remove('active');
-                };
-
-                window.addEventListener('click', (event) => {
-                    if (event.target == modal) {
-                        modal.classList.remove('active');
-                    }
-                });
             }
+            if(closeBtn && modal) closeBtn.onclick = () => modal.classList.remove('active');
         };
 
         return {
@@ -2675,7 +2680,6 @@ const ModalManager = (() => {
             }
         };
     })();
-
     // 2. تعديل دالة الـ init الرئيسية عشان تنادي عليه
     return {
         init: () => {

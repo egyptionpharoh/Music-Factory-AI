@@ -46,24 +46,24 @@
 </nav>
 <div class="settings-overlay" id="settingsPage">
 <div class="settings-header">
-<h2 data-i18n="settings_title">           ⚙️            Settings</h2>
-<button class="settings-close" id="closeSettingsBtn" aria-label="Close Settings">           ✖           </button>
+<h2 data-i18n="settings_title">          ⚙️            Settings</h2>
+<button class="settings-close" id="closeSettingsBtn" aria-label="Close Settings">          ✖          </button>
 </div>
 <div class="settings-layout">
 <div class="settings-sidebar" id="settingsNav">
-<button class="active" data-target="sec-account" data-i18n="set_account">           👤            Account</button>
-<button data-target="sec-appearance" data-i18n="set_appearance">           🎨            Appearance</button>
-<button data-target="sec-notifications" data-i18n="set_notifications">           🔔            Notifications</button>
-<button data-target="sec-privacy" data-i18n="set_privacy">           🔒            Privacy</button>
-<button data-target="sec-data" data-i18n="set_data">           💾            Data & Storage</button>
-<button data-target="sec-accessibility" data-i18n="set_accessibility">           ♿            Accessibility</button>
-<button data-target="sec-support" data-i18n="sec_support">           🎧            Support & FAQ</button>
+<button class="active" data-target="sec-account" data-i18n="set_account">          👤            Account</button>
+<button data-target="sec-appearance" data-i18n="set_appearance">          🎨            Appearance</button>
+<button data-target="sec-notifications" data-i18n="set_notifications">          🔔            Notifications</button>
+<button data-target="sec-privacy" data-i18n="set_privacy">          🔒            Privacy</button>
+<button data-target="sec-data" data-i18n="set_data">          💾            Data & Storage</button>
+<button data-target="sec-accessibility" data-i18n="set_accessibility">          ♿            Accessibility</button>
+<button data-target="sec-support" data-i18n="sec_support">          🎧            Support & FAQ</button>
 </div>
 <div class="settings-content">
     <div id="sec-account" class="settings-section active">
         <div class="settings-group">
             <h3 data-i18n="set_credits">Credits & Usage</h3>
-            <div class="credits-display" title="Credits">           🪙            <span id="creditCountSettings">10</span></div>
+            <div class="credits-display" title="Credits">          🪙            <span id="creditCountSettings">10</span></div>
             <p style="color:#aaa; font-size:13px;" data-i18n="acc_credits_desc">Your current balance for advanced generation.</p>
         </div>
         
@@ -84,7 +84,7 @@
                 <span data-i18n="acc_password">Password:</span>
                 <div class="password-wrapper">
                     <input type="password" id="accPasswordInput" class="settings-input" placeholder="********">
-                    <span id="togglePasswordBtn" class="toggle-password" title="Toggle Visibility">           👁️           </span>
+                    <span id="togglePasswordBtn" class="toggle-password" title="Toggle Visibility">          👁️          </span>
                 </div>
             </div>
             
@@ -250,12 +250,12 @@ Go to Studio and pick rhythm, mood, and maqam.<br>4. Generate and copy outputs.<
 </div>
 <div id="glow" class="light-glow"></div>
 <div class="top-controls">
-<button id="themeBtn" class="theme-circle" data-i18n-title="theme_dark" aria-label="Toggle Theme"><span>           🌙           </span></button>
-<button id="settingsBtn" class="theme-circle" aria-label="Settings" data-i18n-title="nav_settings" title="Settings"><span>           ⚙️           </span></button>
+<button id="themeBtn" class="theme-circle" data-i18n-title="theme_dark" aria-label="Toggle Theme"><span>          🌙          </span></button>
+<button id="settingsBtn" class="theme-circle" aria-label="Settings" data-i18n-title="nav_settings" title="Settings"><span>          ⚙️          </span></button>
 </div>
 <button id="screenBtn" class="screen-btn" aria-label="Toggle fullscreen" title="Fullscreen">
 <span class="text" data-i18n="btn_fullscreen">Fullscreen</span>
-<span class="icon-fs">           ⛶           </span>
+<span class="icon-fs">          ⛶          </span>
 </button>
 <div class="logo-container" id="logoBox">
 <div class="app-title-container">
@@ -342,7 +342,7 @@ Go to Studio and pick rhythm, mood, and maqam.<br>4. Generate and copy outputs.<
 </div>
 <div id="tab-melody" class="tab-content">
 <div class="card" style="margin-bottom: 20px; display:none;" id="oldPromptLibContainer">
-<div class="section-title"> <span data-i18n="sec_prompt_lib">           📚            Ready-Made Melody Generators for Non-Specialists</span></div>
+<div class="section-title"> <span data-i18n="sec_prompt_lib">          📚            Ready-Made Melody Generators for Non-Specialists</span></div>
 <select id="promptLibrarySelect" class="neon-box" style="margin-bottom: 10px;" aria-label="Prompt Library">
 <option value="" data-i18n="opt_lib_custom">Custom Design...</option>
 <option value="pop" data-i18n="opt_lib_pop">Pop</option>
@@ -374,15 +374,15 @@ Go to Studio and pick rhythm, mood, and maqam.<br>4. Generate and copy outputs.<
 </div>
 <div style="margin-bottom: 25px;">
 <label><span data-i18n="lbl_intro">Intro</span>
-<span class="tooltip">           ❓            <span class="tooltiptext" data-i18n="tt_intro">The intro dictates how your track begins.</span></span>
+<span class="tooltip">          ❓            <span class="tooltiptext" data-i18n="tt_intro">The intro dictates how your track begins.</span></span>
 </label>
 <select id="introDropdown" class="neon-box auto-save-trigger" style="margin-bottom: 10px; font-weight: bold;">
-<option value="تلقائي (حسب اللحن)" data-i18n="opt_intro_auto">           🪄            Automatic</option>
-<option value="مقدمة موسيقية طويلة" data-i18n="opt_intro_long">           🎻            Long Instrumental</option>
-<option value="دخول مفاجئ (بدون مقدمة)" data-i18n="opt_intro_sudden">           ⚡            Sudden Entry</option>
-<option value="بناء تدريجي (تصاعدي)" data-i18n="opt_intro_build">           📈            Gradual Buildup</option>
-<option value="مقدمة إيقاعية (طبلة/درامز)" data-i18n="opt_intro_perc">           🥁            Percussive Intro</option>
-<option value="مقدمة غنائية (آهات/كورال)" data-i18n="opt_intro_vocal">           🎤            Vocal Intro</option>
+<option value="تلقائي (حسب اللحن)" data-i18n="opt_intro_auto">          🪄            Automatic</option>
+<option value="مقدمة موسيقية طويلة" data-i18n="opt_intro_long">          🎻            Long Instrumental</option>
+<option value="دخول مفاجئ (بدون مقدمة)" data-i18n="opt_intro_sudden">          ⚡            Sudden Entry</option>
+<option value="بناء تدريجي (تصاعدي)" data-i18n="opt_intro_build">          📈            Gradual Buildup</option>
+<option value="مقدمة إيقاعية (طبلة/درامز)" data-i18n="opt_intro_perc">          🥁            Percussive Intro</option>
+<option value="مقدمة غنائية (آهات/كورال)" data-i18n="opt_intro_vocal">          🎤            Vocal Intro</option>
 </select>
 </div>
 <div class="pillars-grid">
@@ -395,7 +395,7 @@ Go to Studio and pick rhythm, mood, and maqam.<br>4. Generate and copy outputs.<
 </select>
 </div>
 <div class="pillar">
-<label><span data-i18n="p2">2. Mood & Feeling</span> <span class="tooltip">      ❓      <span class="tooltiptext" data-i18n="tt_mood">يحدد الإحساس العام للموسيقى</span></span></label>
+<label><span data-i18n="p2">2. Mood & Feeling</span> <span class="tooltip">       ❓      <span class="tooltiptext" data-i18n="tt_mood">يحدد الإحساس العام للموسيقى</span></span></label>
 <select id="p_feeling" class="auto-save-trigger mood-trigger neon-box searchable-native">
 <option value="Auto">تلقائي (Auto)</option>
 <optgroup label="Positive / Joyful" data-i18n-label="og_joyful">
@@ -453,7 +453,7 @@ value="60" min="5" max="600" step="5" readonly aria-label="Duration">
 <summary>       ⚙️        Advanced Setup (R Rhythm, Tempo & Maqam)</summary>
 <div>
 <div class="pillar" style="width:100%;">
-<label><span data-i18n="p1">1. Rhythm & Style</span> <span class="tooltip">      ❓      <span class="tooltiptext" data-i18n="tt_rhythm">يحدد الإيقاع الأساسي للأغنية</span></span></label>
+<label><span data-i18n="p1">1. Rhythm & Style</span> <span class="tooltip">       ❓      <span class="tooltiptext" data-i18n="tt_rhythm">يحدد الإيقاع الأساسي للأغنية</span></span></label>
 <select id="p_rhythm" class="auto-save-trigger mood-trigger neon-box searchable-native" data-searchable="true">
 <option value="Auto">تلقائي (Auto)</option>
 <option value="None" data-i18n="opt_no_rhythm">بدون إيقاع (No Rhythm)</option>
@@ -491,7 +491,7 @@ value="60" min="5" max="600" step="5" readonly aria-label="Duration">
 <input type="number" id="manualTempo" class="auto-save-trigger lyric-input neon-box" style="display:none; margin-top:5px;" placeholder="BPM">
 </div>
 <div class="pillar" style="width:100%;">
-<label><span data-i18n="p5">5. Maqam (Pro)</span> <span class="tooltip">      ❓      <span class="tooltiptext" data-i18n="tt_maqam">السلم الموسيقي الشرقي للخبراء</span></span></label>
+<label><span data-i18n="p5">5. Maqam (Pro)</span> <span class="tooltip">       ❓      <span class="tooltiptext" data-i18n="tt_maqam">السلم الموسيقي الشرقي للخبراء</span></span></label>
 <select id="p_maqam" class="auto-save-trigger neon-box searchable-native" data-searchable="true">
 <option value="Auto" data-i18n="opt_auto_maqam">Auto (AI Choice)</option>
 <option value="Bayati" data-i18n="opt_bayati">Bayati</option><option value="Rast" data-i18n="opt_rast">Rast</option>
@@ -506,23 +506,23 @@ value="60" min="5" max="600" step="5" readonly aria-label="Duration">
 </div>
 <div style="margin-top: 25px; margin-bottom: 25px;">
 <label><span data-i18n="lbl_outro">Outro</span>
-<span class="tooltip">           ❓            <span class="tooltiptext" data-i18n="tt_outro">The outro dictates how your track concludes.</span></span>
+<span class="tooltip">          ❓            <span class="tooltiptext" data-i18n="tt_outro">The outro dictates how your track concludes.</span></span>
 <span id="oCount" class="char-counter">0 / 500</span>
 </label>
 <select id="outroDropdown" class="neon-box auto-save-trigger" style="margin-bottom: 10px; font-weight: bold;">
-<option value="تلقائي (توصية المايسترو)" data-i18n="opt_outro_auto">           🪄            Auto (Maestro's Rec)</option>
-<option value="انسحاب هادئ (تلاشي)" data-i18n="opt_outro_fade">           📉            Smooth Fade-out</option>
-<option value="قفلة حاسمة (سكتة)" data-i18n="opt_outro_stop">           🛑            Abrupt Stop</option>
-<option value="نهاية فخمة (ملحمية)" data-i18n="opt_outro_epic">           🏛️            Epic Grand Finale</option>
-<option value="هدوء تام (نهاية ناعمة)" data-i18n="opt_outro_soft">           🍃            Soft Landing</option>
-<option value="زيادة الحماس (تصاعد)" data-i18n="opt_outro_crescendo">           📈            Building Intensity</option>
-<option value="ارتجال غنائي (آهات)" data-i18n="opt_outro_vocal">           🎤            Vocal Ad-libs</option>
-<option value="عزف منفرد (صولو)" data-i18n="opt_outro_solo">           🎻            Instrumental Solo</option>
+<option value="تلقائي (توصية المايسترو)" data-i18n="opt_outro_auto">          🪄            Auto (Maestro's Rec)</option>
+<option value="انسحاب هادئ (تلاشي)" data-i18n="opt_outro_fade">          📉            Smooth Fade-out</option>
+<option value="قفلة حاسمة (سكتة)" data-i18n="opt_outro_stop">          🛑            Abrupt Stop</option>
+<option value="نهاية فخمة (ملحمية)" data-i18n="opt_outro_epic">          🏛️            Epic Grand Finale</option>
+<option value="هدوء تام (نهاية ناعمة)" data-i18n="opt_outro_soft">          🍃            Soft Landing</option>
+<option value="زيادة الحماس (تصاعد)" data-i18n="opt_outro_crescendo">          📈            Building Intensity</option>
+<option value="ارتجال غنائي (آهات)" data-i18n="opt_outro_vocal">          🎤            Vocal Ad-libs</option>
+<option value="عزف منفرد (صولو)" data-i18n="opt_outro_solo">          🎻            Instrumental Solo</option>
 </select>
 <textarea id="outro" class="neon-box lyric-input" rows="3" data-i18n-placeholder="pl_outro" placeholder="Outro lyrics (optional)..." data-limit="500"></textarea>
 </div>
 <button class="btn-3d" id="generatePromptBtn">
-<span data-i18n="btn_generate">           🪄            Generate Prompt (Enter)</span>
+<span data-i18n="btn_generate">          🪄            Generate Prompt (Enter)</span>
 </button>
 <div class="project-controls" id="projectManagerUI" style="margin-top: 40px;">
 <input type="text" id="projectName" class="neon-box" style="flex: 1; padding: 10px; margin: 0;" placeholder="اسم المشروع / Project Name">
@@ -536,24 +536,20 @@ value="60" min="5" max="600" step="5" readonly aria-label="Duration">
 </div>
 <div id="tab-outputs" class="tab-content">
 <div class="card">
-<div class="section-title"> <span data-i18n="sec_output">           💿            Music Factory Output Gallery</span></div>
+<div class="section-title"> <span data-i18n="sec_output">          💿            Music Factory Output Gallery</span></div>
 <div class="output-wrapper">
 <span class="output-label" data-i18n="out_full_lbl">3. Full Engine Prompt</span>
-<button class="btn-3d btn-blue copy-btn" data-target="out_full"> <span data-i18n="btn_copy_full">           📋            Copy Full Prompt</span></button>
+<button class="btn-3d btn-blue copy-btn" data-target="out_full"> <span data-i18n="btn_copy_full">          📋            Copy Full Prompt</span></button>
 <div class="output-content" id="out_full">...</div>
 </div>
 <button class="btn-3d btn-apk" id="dynamicGenerateBtn" style="margin-top: 15px;">
-<span id="dynGenText" data-i18n="btn_dyn_gen_song">           🎧            Generate Song</span>
+<span id="dynGenText" data-i18n="btn_dyn_gen_song">          🎧            Generate Song</span>
 </button>
-<!-- حاوية النتيجة والصوت المضافة [المرحلة 4] -->
 <div id="resultContainer" style="display: none; margin-top: 20px; text-align: center; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px; border: 1px solid var(--neon-blue);">
-    <!-- نص حالة التحميل -->
     <p id="statusText" style="color: #ff9800; font-weight: bold; display: none; animation: blink 1s infinite;">⏳ جاري التوليد... يرجى الانتظار (قد يستغرق دقيقة)</p>
     
-    <!-- مشغل الصوت المخفي مبدئياً -->
     <audio id="audioPlayer" controls style="display: none; width: 100%; margin-top: 15px; filter: drop-shadow(0 0 5px var(--neon-blue));"></audio>
     
-    <!-- زر التحميل المخفي مبدئياً -->
     <div style="margin-top: 15px;">
         <a id="downloadBtn" 
    href="#" 
@@ -565,7 +561,7 @@ value="60" min="5" max="600" step="5" readonly aria-label="Duration">
     </div>
 </div>
 <div style="display: flex; gap: 10px; margin-top: 15px;">
-<button class="btn-3d btn-success" id="restoreFieldsBtn" style="padding: 10px; font-size: 14px; flex: 1;"> <span data-i18n="btn_restore">           ↩️            Restore (Ctrl+Z)</span></button>
+<button class="btn-3d btn-success" id="restoreFieldsBtn" style="padding: 10px; font-size: 14px; flex: 1;"> <span data-i18n="btn_restore">          ↩️            Restore (Ctrl+Z)</span></button>
 </div>
 <div id="mp3DownloadSection" style="display: none; margin-top: 25px; padding-top: 20px; padding-bottom: 25px;">
     <span style="color: var(--gold); font-weight: bold; font-size: 1.1em; display:block; margin-bottom:10px;" data-i18n="mp3_download_title">Download MP3</span>
@@ -575,27 +571,58 @@ value="60" min="5" max="600" step="5" readonly aria-label="Duration">
 <option value="256" data-i18n="opt_mp3_256">High Quality (256 kbps)</option>
 <option value="320" data-i18n="opt_mp3_320">Studio Quality (320 kbps)</option>
 </select>
-<button class="btn-3d btn-success" id="downloadMp3Btn" style="width:auto; margin:0;"> <span data-i18n="btn_download_mp3">           ⬇️            Download Track</span></button>
+<button class="btn-3d btn-success" id="downloadMp3Btn" style="width:auto; margin:0;"> <span data-i18n="btn_download_mp3">          ⬇️            Download Track</span></button>
 </div>
 </div>
 <div style="border-top: 2px solid var(--gold); padding-top: 25px;">
-<div class="section-title"> <span data-i18n="sec_export_others">           💿            Export to Other Generators</span></div>
+<div class="section-title"> <span data-i18n="sec_export_others">          💿            Export to Other Generators</span></div>
 <div class="output-wrapper" id="lyricsOutputWrapper">
 <span class="output-label"><span data-i18n="out_lyrics_lbl">1. Lyrics Prompt</span> <span id="outCountL" class="char-counter" style="float:none; margin:0 10px;">0 / 3000</span></span>
-<button class="btn-3d btn-blue copy-btn" data-target="out_lyrics"> <span data-i18n="btn_copy_lyrics">           📋            Copy Lyrics</span></button>
+<button class="btn-3d btn-blue copy-btn" data-target="out_lyrics"> <span data-i18n="btn_copy_lyrics">          📋            Copy Lyrics</span></button>
 <div class="output-content" id="out_lyrics">...</div>
 </div>
 <div class="output-wrapper">
 <span class="output-label" data-i18n="out_style_lbl">2. Style Prompt</span>
-<button class="btn-3d btn-blue copy-btn" data-target="out_style"> <span data-i18n="btn_copy_style">           📋            Copy Style</span></button>
+<button class="btn-3d btn-blue copy-btn" data-target="out_style"> <span data-i18n="btn_copy_style">          📋            Copy Style</span></button>
 <div class="output-content" id="out_style">...</div>
 </div>
 </div>
 <div style="margin-top: 30px; text-align: center;">
-<button class="btn-blue" id="openSunoBtn" style="margin:0; border-radius:10px; font-size: 18px; padding: 15px 30px;">           🚀            Suno AI</button>
+<button class="btn-blue" id="openSunoBtn" style="margin:0; border-radius:10px; font-size: 18px; padding: 15px 30px;">          🚀            Suno AI</button>
 </div>
 </div>
 </div>
+</div>
+
+<div class="app-footer" style="text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid rgba(0, 210, 255, 0.2);">
+    <p style="color: #aaa; font-size: 14px;">
+        Crafted with <span style="color: var(--neon-red);">❤️</span> by 
+        <a href="#" id="openFounderBtnFooter" style="color: var(--neon-blue); text-decoration: none; font-weight: bold; font-family: 'Orbitron', sans-serif;">Hussein Elmalek</a>
+    </p>
+</div>
+
+<div id="founderModal" class="settings-overlay"> 
+    <div class="settings-header">
+        <h2 style="font-family: 'Orbitron', sans-serif;">About the Founder</h2>
+        <button class="settings-close close-founder" aria-label="Close">&times;</button>
+    </div>
+    
+    <div class="settings-content" style="text-align: center; padding: 40px 20px; overflow-y: auto;">
+        <div class="profile-img-wrapper" style="width: 130px; height: 130px; margin: 0 auto 20px; border-radius: 50%; padding: 4px; background: linear-gradient(145deg, var(--neon-blue), var(--neon-purple)); box-shadow: 0 0 25px rgba(0, 210, 255, 0.3);">
+            <img class="profile-img" src="my-photo.jpg" alt="Hussein Elmalek" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--card-night);">
+        </div>
+        
+        <h2 class="dev-name" style="font-family: 'Orbitron', sans-serif; color: var(--gold); margin-bottom: 5px; font-size: 1.8rem;">Hussein Elmalek</h2>
+        <p class="dev-title" style="color: var(--neon-blue); font-weight: bold; font-size: 1rem; margin-bottom: 25px; letter-spacing: 1px;">Music Educator, Lyricist & AI Product Creator</p>
+        
+        <div class="dev-bio" style="color: var(--text-color); line-height: 1.9; font-size: 1.05rem; max-width: 600px; margin: 0 auto 30px; text-align: justify; direction: rtl; background: rgba(0,0,0,0.2); padding: 20px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05);">
+            <p style="margin: 0;">تأسست <strong>Music Factory AI</strong> بهدف سد الفجوة بين الإبداع الموسيقي العربي وتقنيات الذكاء الاصطناعي الحديثة. كصناع موسيقى، نحن نبني أدوات احترافية تساعد المبدعين على تحويل أفكارهم إلى تجارب موسيقية متكاملة من خلال بيئة هندسة صوتية ذكية.</p>
+        </div>
+        
+        <a href="mailto:hussien.elmalek@gmail.com" class="btn-3d btn-blue" style="display: inline-flex; justify-content: center; align-items: center; gap: 10px; width: auto; padding: 10px 30px; text-decoration: none;">
+            <span>✉️</span> تواصل مع المؤسس
+        </a>
+    </div>
 </div>
 
 <div id="onboardingOverlay" class="onboarding-overlay">
@@ -617,51 +644,37 @@ value="60" min="5" max="600" step="5" readonly aria-label="Duration">
 <p data-i18n="ob_generate_desc" style="color:var(--text-color);">Hit generate to get your ready-to-use prompts for Suno AI!</p>
 </div>
 <div style="display: flex; justify-content: space-between; margin-top: 30px;">
-            <button class="btn-danger" id="ob-skip" style="width: auto; padding: 10px 20px;" data-i18n="ob_skip">Skip</button>
-            <div style="display: flex; gap: 10px;">
-                <button class="btn-blue" id="ob-back" style="width: auto; padding: 10px 20px; display:none;" data-i18n="ob_back">Back</button>
-                <button class="btn-success" id="ob-next" style="width: auto; padding: 10px 20px;" data-i18n="ob_next">Next</button>
-                <button class="btn-success" id="ob-finish" style="width: auto; padding: 10px 20px; display:none;" data-i18n="ob_finish">Finish</button>
-            </div>
-        </div>
-    </div> </div>
-    <footer>
-    <p>Crafted with <span>❤️</span> by <a href="#" id="openFounderModal" style="color: var(--gold); text-decoration: none;">Hussein Elmalek</a></p>
-</footer>
-<div id="founderModal" class="modal-overlay">
-    <div class="card about-card" style="max-width: 500px; border: 1px solid var(--neon-blue);">
-        <button id="closeFounderModal" class="maestro-close" style="position: absolute; top: 10px; left: 10px;">&times;</button>
-        
-        <div class="profile-img-wrapper" style="width: 120px; height: 120px;">
-            <img src="my-photo.jpg" alt="Hussein Elmalek" class="profile-img">
-        </div>
-        
-        <h2 class="dev-name" style="font-size: 1.5rem;">Hussein Elmalek</h2>
-        <p class="dev-title" style="margin-bottom: 15px;">Founder & Lead Architect</p>
-        
-        <div class="dev-bio" style="font-size: 0.95rem; text-align: justify; direction: rtl; padding: 0 10px;">
-            <p>ملحن وباحث موسيقي، متخصص في تطويع الذكاء الاصطناعي لخدمة الإبداع الفني. تهدف Music Factory AI إلى سد الفجوة بين التقنية والهوية الموسيقية العربية.</p>
-        </div>
-        
-        <div style="margin-top: 20px;">
-            <a href="mailto:hussien.elmalek@gmail.com" class="btn-blue" style="padding: 8px 20px; font-size: 14px;">Contact Founder</a>
-        </div>
-    </div>
+<button class="btn-danger" id="ob-skip" style="width: auto; padding: 10px 20px;" data-i18n="ob_skip">Skip</button>
+<div style="display: flex; gap: 10px;">
+<button class="btn-blue" id="ob-back" style="width: auto; padding: 10px 20px; display:none;" data-i18n="ob_back">Back</button>
+<button class="btn-success" id="ob-next" style="width: auto; padding: 10px 20px;" data-i18n="ob_next">Next</button>
+<button class="btn-success" id="ob-finish" style="width: auto; padding: 10px 20px; display:none;" data-i18n="ob_finish">Finish</button>
+</div>
+</div>
 </div>
 <div id="toast" aria-live="polite"></div>
-
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.21/mammoth.browser.min.js"></script>
+<script src="script.js"></script>
 <div class="maestro-assistant-wrapper">
     <button id="maestroFab" class="maestro-fab" aria-label="Open Assistant">
         <span class="fab-icon">🤖</span>
     </button>
     <div id="maestroChatWindow" class="maestro-chat-window">
+        <div class="maestro-chat-header">
+            <span data-i18n="ast_title">Maestro Assistant</span>
+            <button id="maestroCloseBtn" class="maestro-close">&times;</button>
         </div>
+        <div id="maestroChatBody" class="maestro-chat-body">
+            <div class="maestro-msg ai" data-i18n="ast_welcome">Hello! How can I help you with your music today?</div>
+        </div>
+        <div class="maestro-chat-footer">
+            <input type="text" id="maestroChatInput" class="neon-box" data-i18n-placeholder="ast_placeholder" placeholder="Type a message...">
+            <button id="maestroSendBtn" class="btn-blue" style="margin-top:0;" data-i18n="ast_send">Send</button>
+        </div>
+    </div>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-<script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.21/mammoth.browser.min.js"></script>
-<script src="script.js"></script>
-
 </body>
 </html>
