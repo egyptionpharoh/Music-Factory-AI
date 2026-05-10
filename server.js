@@ -9,7 +9,6 @@ const rateLimit = require('express-rate-limit');
 
 // 1. استيراد المسارات (Routes)
 const authRoutes = require('./routes/authRoutes');
-const authRoutes = require('./routes/authRoutes');
 const Founder = require('./models/Founder'); // استدعاء الموديل
 const songRoutes = require('./routes/songRoutes');
 const chatRoutes = require('./routes/chatRoutes');
