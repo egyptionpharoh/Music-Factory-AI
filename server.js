@@ -104,18 +104,10 @@ mongoose.connect(process.env.MONGO_URI)
         console.error('🔥 خطأ حرج في قاعدة البيانات:', err.message);
         process.exit(1); 
     });
-    app.get('/api/founder', async (req, res) => {
-    try {
-        const founder = await Founder.findOne();
-        res.json(founder || { name: "حسين الملك", bio: "مؤسس المنصة", imageUrl: "/assets/my-photo.jpg", title: "Founder" });
-    } catch (err) {
-        res.status(500).json({ error: "خطأ في جلب البيانات" });
-    }
-});
 // 7. توجيه المرور للملفات المختصة (Routing)
-app.use('/api/auth', authRoutes);   // تسجيل، دخول، رصيد
-app.use('/api/songs', songRoutes); // توليد، مكتبة، تحميل، حذف
-app.use('/api/chat', chatRoutes);   // المايسترو الذكي
+app.use('/api/auth', authRoutes);    
+app.use('/api/songs', songRoutes); 
+app.use('/api/chat', chatRoutes);    
 app.use('/api/founder', founderRoutes); // بيانات المؤسس
 // عرض ملفات الفرونت إند من فولدر public
 app.use(express.static(path.join(__dirname, 'public')));
