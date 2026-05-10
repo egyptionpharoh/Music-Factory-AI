@@ -2611,43 +2611,30 @@ const ModalManager = (() => {
         }
     };
 })();
-   // 1. موديول المؤسس (براند حسين الملك + السيرة الذاتية الكاملة)
+   // استبدل موديول FounderManager القديم بهذا الكود حرفياً
     const FounderManager = (() => {
         const updateUI = (data, isLoading = false) => {
             const nameEl = document.querySelector('.dev-name');
             const bioEl = document.querySelector('.dev-bio p');
-            const imgEl = document.querySelector('.profile-img');
             const titleEl = document.querySelector('.dev-title');
             const footerNameEl = document.getElementById('openFounderBtnFooter');
 
-            if (isLoading) {
-                if(nameEl) nameEl.innerText = "جاري التحميل...";
-                return; 
-            }
+            if (isLoading) return;
 
-            // الاسم الفني (البراند)
-            const artName = 'حسين الملك';
-            
-            // السيرة الذاتية الاحترافية تبدأ بالاسم الكامل
-            const professionalBio = `حسين محمد سيد عبدالعال هو شاعر غنائي وملحن ومبرمج تطبيقات موسيقية، وباحث أكاديمي بجامعة القاهرة، بالإضافة إلى كونه عازفاً لآلة الكونترباص. يجمع في مسيرته بين الحس الفني والخبرة التقنية، حيث عمل على تطوير رؤى موسيقية حديثة تمزج بين الإبداع الإنساني وتقنيات الذكاء الاصطناعي.
+            // البيانات اللي اتفقنا عليها
+            const brandName = 'حسين الملك';
+            const hybridTitle = 'Founder • Composer • AI Music Architect';
+            const cinematicBio = `حسين محمد سيد عبدالعال، المعروف فنياً باسم "حسين الملك"، هو شاعر غنائي وملحن ومبرمج تطبيقات موسيقية، وباحث أكاديمي بجامعة القاهرة، بالإضافة إلى كونه عازفاً لآلة الكونترباص. يجمع في مسيرته بين الحس الفني والخبرة التقنية، حيث عمل على تطوير رؤى موسيقية حديثة تمزج بين الإبداع الإنساني وتقنيات الذكاء الاصطناعي.
 
 له عدد من المؤلفات الغنائية والموسيقية، ويهتم بمجالات الموسيقى التعبيرية والعلاج بالموسيقى، مع تركيز خاص على توظيف التكنولوجيا لخدمة العملية الإبداعية وتوسيع فرص الوصول إلى الإنتاج الموسيقي.
 
-قام بتأسيس وبرمجة منصة “Mu | Music Factory AI” بهدف إتاحة أدوات ذكية تساعد المبدعين على تحويل أفكارهم إلى أعمال موسيقية متكاملة بسهولة واحترافية، سواء كانوا شعراء، صناع محتوى، يوتيوبرز، مخرجين سينمائيين، أو منتجي وسائط رقمية يبحثون عن موسيقى تصويرية وألحان تعبر عن رؤيتهم الفنية.`;
+قام بتأسيس وبرمجة منصة “Mu | Music Factory AI” بهدف إتاحة أدوات ذكية تساعد المبدعين على تحويل أفكارهم إلى أعمال موسيقية متكاملة بسهولة واحترافية، سواء كانوا شعراء، صناع محتوى، يوتيوبرز، مخرجين سينمائيين، أو منتجي وسائط رقمية يبحثون عن موسيقى تصويرية وألحان تعبّر عن رؤيتهم الفنية.`;
 
-            // التنفيذ
-            if(nameEl) nameEl.innerText = artName; // هنا هيفضل "حسين الملك"
-            if(bioEl) bioEl.innerText = professionalBio; // هنا السيرة الذاتية الكاملة
-            
-            if(imgEl) {
-                imgEl.src = data.imageUrl || 'my-photo.jpg';
-                imgEl.style.opacity = '1';
-            }
-            if(titleEl) titleEl.innerText = 'Founder & Lead Architect';
-
-            if(footerNameEl) {
-                footerNameEl.innerText = artName; // الاسم في الفوتر برضه "حسين الملك"
-            }
+            // التنفيذ في الواجهة
+            if(nameEl) nameEl.innerText = brandName;
+            if(titleEl) titleEl.innerText = hybridTitle;
+            if(bioEl) bioEl.innerText = cinematicBio;
+            if(footerNameEl) footerNameEl.innerText = brandName;
         };
 
         const fetchFounderData = async () => {
