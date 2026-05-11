@@ -1688,15 +1688,17 @@ const App = (() => {
                             
                             alert("✅ " + data.message);
                             
-                            // 💡 التحديث هنا: تعديل الزرار وإخفاء زرار التسجيل فوراً
+                            // تحديث شكل الزرار بعد النجاح
                             const displayName = data.userData.username || data.userData.email.split('@')[0];
                             realLoginBtn.innerHTML = `✅ متصل: ${displayName}`;
                             realLoginBtn.classList.add('btn-success');
                             
-                            if (realRegisterBtn) realRegisterBtn.style.display = 'none'; // اختفي يا زرار يا أزرق
+                            // إخفاء زرار "إنشاء حساب" (Register) فوراً
+                            const registerBtn = document.getElementById('registerBtn');
+                            if (registerBtn) registerBtn.style.display = 'none';
 
-                            const settingsPage = document.querySelector('.settings-page');
-                            if (settingsPage) settingsPage.classList.remove('active');
+                            // قفل صفحة الإعدادات أوتوماتيك
+                            if (dom.settingsPage) dom.settingsPage.classList.remove('active');
 
                         } catch (error) {
                             console.error("Login Error:", error);
