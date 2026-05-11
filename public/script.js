@@ -1746,22 +1746,23 @@ if (realRegisterBtn) {
                 })
             });
 
+            // 💡 التعديل السحري: هنتعامل بذكاء مع رد الباك إند أياً كان شكله
             const userInfo = data.userData || data.user || { name: name, username: name, email: email };
 
+            // حفظ التوكن وبيانات المستخدم بعد التسجيل الناجح
             AuthManager.saveAuth(data.token, userInfo);
             
             alert("🎉 تم إنشاء الحساب بنجاح! تم منحك رصيد مجاني للبدء.");
             
+            // تحديث واجهة زر الدخول ليعكس حالة الاتصال
             const loginBtn = document.getElementById('loginBtn');
             if (loginBtn) {
                 const displayName = userInfo.username || userInfo.name || userInfo.email.split('@')[0];
                 loginBtn.innerHTML = `✅ متصل: ${displayName}`;
                 loginBtn.classList.add('btn-success');
             }
-
-            // 💡 التعديل هنا: إخفاء زرار التسجيل فوراً بعد النجاح
-            if (realRegisterBtn) realRegisterBtn.style.display = 'none';
             
+            // إغلاق نافذة الإعدادات/الدخول
             const settingsPage = document.querySelector('.settings-page');
             if (settingsPage) settingsPage.classList.remove('active');
 
