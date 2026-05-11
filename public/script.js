@@ -1731,15 +1731,19 @@ if (realRegisterBtn) {
                 })
             });
 
+            // 💡 التعديل السحري: هنتعامل بذكاء مع رد الباك إند أياً كان شكله
+            const userInfo = data.userData || data.user || { name: name, username: name, email: email };
+
             // حفظ التوكن وبيانات المستخدم بعد التسجيل الناجح
-            AuthManager.saveAuth(data.token, data.user);
+            AuthManager.saveAuth(data.token, userInfo);
             
             alert("🎉 تم إنشاء الحساب بنجاح! تم منحك رصيد مجاني للبدء.");
             
             // تحديث واجهة زر الدخول ليعكس حالة الاتصال
             const loginBtn = document.getElementById('loginBtn');
             if (loginBtn) {
-                loginBtn.innerHTML = `✅ متصل: ${data.user.name || data.user.email.split('@')[0]}`;
+                const displayName = userInfo.username || userInfo.name || userInfo.email.split('@')[0];
+                loginBtn.innerHTML = `✅ متصل: ${displayName}`;
                 loginBtn.classList.add('btn-success');
             }
             
