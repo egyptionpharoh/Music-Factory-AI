@@ -260,10 +260,78 @@ font-size: 14px; border: none; border-radius: 10px; font-weight: bold; cursor: p
 .btn-blue:active { transform: translateY(6px); box-shadow: 0 0px 0 transparent; }
 .btn-apk { background: linear-gradient(145deg, #ff0055, #ff4d88); color: white; box-shadow: 0 8px 0 #cc0044; }
 .btn-apk:active { transform: translateY(8px); box-shadow: 0 0px 0 transparent; }
-.btn-danger { background: linear-gradient(145deg, #dc3545, #ff4d4d); color: white; box-shadow: 0 6px 0 #a71d2a; width: auto;}
-.btn-danger:active { transform: translateY(6px); box-shadow: 0 0px 0 transparent; }
-.btn-success { background: linear-gradient(145deg, #28a745, #34d058); color: white; box-shadow: 0 6px 0 #1e7e34; width: auto;}
-.btn-success:active { transform: translateY(6px); box-shadow: 0 0px 0 transparent; }
+/* التنسيق الشيك الجديد للأزرار الحمراء */
+.btn-danger {
+    background: radial-gradient(circle at 50% 20%, #ff4d4d, #cc0000) !important;
+    color: #fff !important;
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.4) !important;
+    border: 1px solid #730000 !important;
+    padding: 12px 25px !important;
+    border-radius: 12px !important; /* حواف مستديرة عصرية */
+    font-weight: bold !important;
+    cursor: pointer !important;
+    font-family: 'Cairo', sans-serif !important;
+    
+    /* بناء الجسم المجسم */
+    box-shadow: 
+        inset 0 2px 0 rgba(255,255,255,0.4), /* إضاءة علوية */
+        inset 0 -4px 0 rgba(0,0,0,0.3),      /* سُمك الزر السفلي */
+        0 5px 10px rgba(0,0,0,0.4) !important; 
+        
+    transition: background 0.2s, box-shadow 0.1s, transform 0.1s !important;
+}
+
+/* تأثير الماوس (Hover) */
+.btn-danger:hover {
+    background: radial-gradient(circle at 50% 20%, #ff6666, #d90000) !important;
+    box-shadow: 
+        inset 0 2px 0 rgba(255,255,255,0.5),
+        inset 0 -4px 0 rgba(0,0,0,0.3),
+        0 5px 15px rgba(255, 51, 51, 0.4) !important; /* توهج أحمر خفيف */
+}
+
+/* تأثير الضغط (الكبسة الفيزيائية) */
+.btn-danger:active {
+    transform: translateY(4px) !important; /* الزرار بيغطس لتحت */
+    box-shadow: 
+        inset 0 3px 6px rgba(0,0,0,0.7), 
+        0 1px 1px rgba(0,0,0,0.2) !important;
+}
+/* التنسيق الشيك الجديد للأزرار الخضراء */
+.btn-success {
+    background: radial-gradient(circle at 50% 20%, #34d058, #28a745) !important;
+    color: #fff !important;
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.4) !important;
+    border: 1px solid #1e7e34 !important;
+    padding: 12px 25px !important;
+    border-radius: 12px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    font-family: 'Cairo', sans-serif !important;
+    
+    /* سُمك الزر وبروزه */
+    box-shadow: 
+        inset 0 2px 0 rgba(255,255,255,0.4), 
+        inset 0 -4px 0 rgba(0,0,0,0.3),      
+        0 5px 10px rgba(0,0,0,0.4) !important; 
+        
+    transition: all 0.1s ease !important;
+}
+
+.btn-success:hover {
+    background: radial-gradient(circle at 50% 20%, #3ce66a, #218838) !important;
+    box-shadow: 
+        inset 0 2px 0 rgba(255,255,255,0.5),
+        inset 0 -4px 0 rgba(0,0,0,0.3),
+        0 5px 15px rgba(40, 167, 69, 0.4) !important;
+}
+
+.btn-success:active {
+    transform: translateY(4px) !important;
+    box-shadow: 
+        inset 0 3px 6px rgba(0,0,0,0.7), 
+        0 1px 1px rgba(0,0,0,0.2) !important;
+}
 .output-wrapper { position: relative; margin-bottom: 25px; }
 .output-content {
 min-height: 100px; padding: 20px; border-radius: 12px; font-family: monospace; white-space: pre-wrap; font-size: 15px;
