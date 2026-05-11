@@ -1694,21 +1694,22 @@ const App = (() => {
                     };
                 }
                 // --- 3. ربط وظيفة إنشاء حساب جديد (Register) ---
-// افترضنا إنك هتضيف زرار في الـ HTML الـ ID بتاعه 'registerBtn'
+// --- 3. ربط وظيفة إنشاء حساب جديد (Register) ---
 const realRegisterBtn = document.getElementById('registerBtn');
 
 if (realRegisterBtn) {
     realRegisterBtn.onclick = async (e) => {
-        e.preventDefault(); // إيقاف تحديث الصفحة الإجباري اللي بيفشل العملية
+        e.preventDefault(); 
         
-        // سحب القيم من نفس حقول الإيميل والباسورد، وممكن تضيف حقل لاسم المستخدم لو حبيت
         const emailField = document.getElementById('accEmailInput');
         const passField = document.getElementById('accPasswordInput');
-        const nameField = document.getElementById('accNameInput'); // حقل اختياري للاسم
+        const nameField = document.getElementById('accNameInput'); 
         
         const email = emailField ? emailField.value.trim() : '';
         const password = passField ? passField.value : '';
-        const name = nameField ? nameField.value.trim() : email.split('@')[0]; // لو مفيش اسم هياخد أول الإيميل
+        
+        // التعديل السحري هنا: نتأكد إن الحقل موجود وفيه كلام، مش مجرد موجود وخلاص
+        const name = (nameField && nameField.value.trim() !== '') ? nameField.value.trim() : email.split('@')[0];
 
         if (!email || password.length < 6) {
             alert("❌ برجاء إدخال إيميل صحيح وكلمة مرور لا تقل عن 6 أحرف!");
@@ -1720,7 +1721,6 @@ if (realRegisterBtn) {
         realRegisterBtn.disabled = true;
 
         try {
-            // غيرنا التسمية هنا عشان تطابق الباك إند (بعتنا name و username عشان نضرب عصفورين بحجر)
             const data = await NetworkManager.publicFetch('/api/auth/register', {
                 method: 'POST',
                 body: JSON.stringify({ 
