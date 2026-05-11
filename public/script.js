@@ -1775,14 +1775,14 @@ if (realRegisterBtn) {
     };
 }
                 // --- 2. إضافة وظيفة تسجيل الخروج (Logout) ---
-                // --- 2. إضافة وظيفة تسجيل الخروج (Logout) ---
                 document.body.addEventListener('click', (e) => {
+                    // الاصطياد المزدوج: لو الزرار عنده الـ attribute بتاع الترجمة، أو الآي دي بتاعه logoutBtn
                     const isLogoutBtn = e.target.closest('[data-i18n="acc_logout"]') || e.target.id === 'logoutBtn';
                     
                     if (isLogoutBtn) {
                         e.preventDefault();
-                        // 💡 التعديل هنا: استخدام الوظيفة الشاملة لمسح التوكن واليوزر مع بعض
-                        AuthManager.logout(); 
+                        localStorage.removeItem('music_factory_user'); // مسح بيانات المستخدم
+                        location.reload(); // إعادة تحميل الصفحة لترسيت الحالة
                     }
                 });
                 // ----------------------------------------
