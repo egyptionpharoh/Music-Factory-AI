@@ -1620,6 +1620,17 @@ const App = (() => {
                     });
                 }
 
+                // --- إظهار وإخفاء كلمة المرور ---
+                const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+                const accPasswordInput = document.getElementById('accPasswordInput');
+                if (togglePasswordBtn && accPasswordInput) {
+                    togglePasswordBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const type = accPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                        accPasswordInput.setAttribute('type', type);
+                    });
+                }
+
                 // --- ربط زر تسجيل الدخول الحقيقي (تعديل الربط المباشر) ---
                 const realLoginBtn = document.getElementById('loginBtn');
                 // --- 1. التحقق من الجلسة (Session) عند تحميل الصفحة ---
@@ -1640,7 +1651,8 @@ const App = (() => {
                 // ----------------------------------------------------
                 
                 if (realLoginBtn) {
-                    realLoginBtn.onclick = async () => {
+                    realLoginBtn.onclick = async (e) => {
+                        e.preventDefault(); // إيقاف تحديث الصفحة الإجباري
                         // سحب القيم مباشرة من الحقول في لحظة الضغط
                         const emailField = document.getElementById('accEmailInput');
                         const passField = document.getElementById('accPasswordInput');
@@ -1686,7 +1698,9 @@ const App = (() => {
 const realRegisterBtn = document.getElementById('registerBtn');
 
 if (realRegisterBtn) {
-    realRegisterBtn.onclick = async () => {
+    realRegisterBtn.onclick = async (e) => {
+        e.preventDefault(); // إيقاف تحديث الصفحة الإجباري اللي بيفشل العملية
+        
         // سحب القيم من نفس حقول الإيميل والباسورد، وممكن تضيف حقل لاسم المستخدم لو حبيت
         const emailField = document.getElementById('accEmailInput');
         const passField = document.getElementById('accPasswordInput');
