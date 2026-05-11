@@ -1632,17 +1632,20 @@ const App = (() => {
                 }
 
                 // --- ربط زر تسجيل الدخول الحقيقي (تعديل الربط المباشر) ---
-                const realLoginBtn = document.getElementById('loginBtn');
                 // --- 1. التحقق من الجلسة (Session) عند تحميل الصفحة ---
                 if (realLoginBtn) {
                     const savedUser = localStorage.getItem('music_factory_user');
                     if (savedUser) {
                         try {
                             const userData = JSON.parse(savedUser);
-                            // لو مفيش username، هناخد الجزء الأول من الإيميل (اللي قبل الـ @)
-                            const displayName = userData.username || userData.email.split('@')[0];
+                            const displayName = userData.username || userData.name || userData.email.split('@')[0];
                             realLoginBtn.innerHTML = `✅ متصل: ${displayName}`;
                             realLoginBtn.classList.add('btn-success');
+                            
+                            // 💡 السطر ده عشان يخفي زرار "إنشاء حساب" طالما إنت مسجل دخول
+                            const regBtn = document.getElementById('registerBtn');
+                            if(regBtn) regBtn.style.display = 'none';
+                            
                         } catch (error) {
                             console.error("خطأ في قراءة بيانات الجلسة:", error);
                         }
