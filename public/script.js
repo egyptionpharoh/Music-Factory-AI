@@ -1746,23 +1746,22 @@ if (realRegisterBtn) {
                 })
             });
 
-            // 💡 التعديل السحري: هنتعامل بذكاء مع رد الباك إند أياً كان شكله
             const userInfo = data.userData || data.user || { name: name, username: name, email: email };
 
-            // حفظ التوكن وبيانات المستخدم بعد التسجيل الناجح
             AuthManager.saveAuth(data.token, userInfo);
             
             alert("🎉 تم إنشاء الحساب بنجاح! تم منحك رصيد مجاني للبدء.");
             
-            // تحديث واجهة زر الدخول ليعكس حالة الاتصال
             const loginBtn = document.getElementById('loginBtn');
             if (loginBtn) {
                 const displayName = userInfo.username || userInfo.name || userInfo.email.split('@')[0];
                 loginBtn.innerHTML = `✅ متصل: ${displayName}`;
                 loginBtn.classList.add('btn-success');
             }
+
+            // 💡 التعديل هنا: إخفاء زرار التسجيل فوراً بعد النجاح
+            if (realRegisterBtn) realRegisterBtn.style.display = 'none';
             
-            // إغلاق نافذة الإعدادات/الدخول
             const settingsPage = document.querySelector('.settings-page');
             if (settingsPage) settingsPage.classList.remove('active');
 
@@ -1776,14 +1775,14 @@ if (realRegisterBtn) {
     };
 }
                 // --- 2. إضافة وظيفة تسجيل الخروج (Logout) ---
+                // --- 2. إضافة وظيفة تسجيل الخروج (Logout) ---
                 document.body.addEventListener('click', (e) => {
-                    // الاصطياد المزدوج: لو الزرار عنده الـ attribute بتاع الترجمة، أو الآي دي بتاعه logoutBtn
                     const isLogoutBtn = e.target.closest('[data-i18n="acc_logout"]') || e.target.id === 'logoutBtn';
                     
                     if (isLogoutBtn) {
                         e.preventDefault();
-                        localStorage.removeItem('music_factory_user'); // مسح بيانات المستخدم
-                        location.reload(); // إعادة تحميل الصفحة لترسيت الحالة
+                        // 💡 التعديل هنا: استخدام الوظيفة الشاملة لمسح التوكن واليوزر مع بعض
+                        AuthManager.logout(); 
                     }
                 });
                 // ----------------------------------------
