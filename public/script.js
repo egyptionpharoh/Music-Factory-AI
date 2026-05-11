@@ -1720,9 +1720,15 @@ if (realRegisterBtn) {
         realRegisterBtn.disabled = true;
 
         try {
+            // غيرنا التسمية هنا عشان تطابق الباك إند (بعتنا name و username عشان نضرب عصفورين بحجر)
             const data = await NetworkManager.publicFetch('/api/auth/register', {
                 method: 'POST',
-                body: JSON.stringify({ name, email, password })
+                body: JSON.stringify({ 
+                    username: name, 
+                    name: name, 
+                    email: email, 
+                    password: password 
+                })
             });
 
             // حفظ التوكن وبيانات المستخدم بعد التسجيل الناجح
