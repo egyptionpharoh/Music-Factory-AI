@@ -1165,6 +1165,11 @@ const App = (() => {
 
     const EventBinder = (() => {
         const dom = UIController.getDOM();
+        
+        // 💡 تعريف المتغيرات هنا يضمن عدم حدوث خطأ "not defined"
+        const realLoginBtn = document.getElementById('loginBtn');
+        const realRegisterBtn = document.getElementById('registerBtn');
+
         return {
             init: () => {
                 if (dom.settingsBtn) {
@@ -1639,12 +1644,14 @@ const App = (() => {
                         try {
                             const userData = JSON.parse(savedUser);
                             const displayName = userData.username || userData.name || userData.email.split('@')[0];
+                            
                             realLoginBtn.innerHTML = `✅ متصل: ${displayName}`;
                             realLoginBtn.classList.add('btn-success');
                             
-                            // 💡 السطر ده عشان يخفي زرار "إنشاء حساب" طالما إنت مسجل دخول
-                            const regBtn = document.getElementById('registerBtn');
-                            if(regBtn) regBtn.style.display = 'none';
+                            // إخفاء زرار "إنشاء حساب" طالما الجلسة نشطة
+                            if (realRegisterBtn) {
+                                realRegisterBtn.style.display = 'none';
+                            }
                             
                         } catch (error) {
                             console.error("خطأ في قراءة بيانات الجلسة:", error);
@@ -1655,8 +1662,7 @@ const App = (() => {
                 
                 if (realLoginBtn) {
                     realLoginBtn.onclick = async (e) => {
-                        e.preventDefault(); // إيقاف تحديث الصفحة الإجباري
-                        // سحب القيم مباشرة من الحقول في لحظة الضغط
+                        e.preventDefault();
                         const emailField = document.getElementById('accEmailInput');
                         const passField = document.getElementById('accPasswordInput');
                         
@@ -1668,10 +1674,9 @@ const App = (() => {
                             return;
                         }
 
-                        // حفظ الحالة الأصلية للزر
                         const originalText = realLoginBtn.innerHTML;
                         realLoginBtn.innerHTML = '⏳ جاري التحقق...';
-                        realLoginBtn.disabled = true; // تعطيل الزر لمنع التكرار
+                        realLoginBtn.disabled = true;
 
                         try {
                             const data = await NetworkManager.publicFetch('/api/auth/login', {
@@ -1682,9 +1687,14 @@ const App = (() => {
                             AuthManager.saveAuth(data.token, data.userData);
                             
                             alert("✅ " + data.message);
-                            realLoginBtn.innerHTML = `✅ متصل: ${data.userData.username || data.userData.email.split('@')[0]}`;
+                            
+                            // 💡 التحديث هنا: تعديل الزرار وإخفاء زرار التسجيل فوراً
+                            const displayName = data.userData.username || data.userData.email.split('@')[0];
+                            realLoginBtn.innerHTML = `✅ متصل: ${displayName}`;
                             realLoginBtn.classList.add('btn-success');
                             
+                            if (realRegisterBtn) realRegisterBtn.style.display = 'none'; // اختفي يا زرار يا أزرق
+
                             const settingsPage = document.querySelector('.settings-page');
                             if (settingsPage) settingsPage.classList.remove('active');
 
