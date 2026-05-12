@@ -162,7 +162,7 @@ const App = (() => {
                 btn_next_melody: "اضغط للانتقال إلى استوديو التلحين والتوزيع", sec_pillars: "استديو التحكم في اللحن والتوزيع للمتخصصين",
                 p1: "1. الإيقاع والاستايل", p2: "2. المود والإحساس", p3: "3. صوت المغني", p4: "4. السرعة (التمبو)", p5: "5. المقام (للمحترفين)",
                 p_rhythmic_mode: "النمط الإيقاعي", p_inst: "الآلات الموسيقية", p_track_type: "نوع المقطوعة", p_duration: "المدة الزمنية",
-                opt_rhythmic: "إيقاعي (Rhythmic)", opt_ambient: "محيطي (Ambient)", opt_hybrid: "مدمج (Hybrid)", opt_cue: "مقطوعة قصيرة (Cue)", opt_loop: "تكرار مستمر (Loop)", opt_full: "مقطوعة كاملة (Full Track)",
+                opt_rhythmic: "🥁 إيقاع واضح ومباشر", opt_ambient: "🌌 أجواء هادئة بدون إيقاع", opt_hybrid: "⚖️ توازن بين الموسيقى والإيقاع", opt_cue: "مقطوعة قصيرة (Cue)", opt_loop: "♾️ موسيقى خلفية متكررة بدون انقطاع", opt_full: "مقطوعة كاملة (Full Track)",
                 opt_no_rhythm: "بدون إيقاع (No Rhythm)", p_inst_orchestra: "التوزيع الآلي (Orchestration)",
                 opt_rm_rhythmic: "🥁 إيقاع واضح ومباشر",
 opt_rm_music_first: "🎼 موسيقى ثم إيقاع",
@@ -258,7 +258,7 @@ opt_voc_edu_kids: "📚 صوت تعليمي للأطفال",
                 btn_next_melody: "Go to Composition & Arrangement Studio →", sec_pillars: "Advanced Studio for Composition & Arrangement",
                 p1: "1. Rhythm & Style", p2: "2. Mood & Feeling", p3: "3. Vocalist", p4: "4. Tempo (BPM)", p5: "5. Maqam (Pro)",
                 p_rhythmic_mode: "Rhythmic Mode", p_inst: "Instrumentation", p_track_type: "Track Type", p_duration: "Duration",
-                opt_rhythmic: "Rhythmic", opt_ambient: "Ambient", opt_hybrid: "Hybrid", opt_cue: "Cue (Short)", opt_loop: "Seamless Loop", opt_full: "Full Track",
+                opt_rhythmic: "🥁 Rhythmic & Direct", opt_ambient: "🌌 Ambient (No Percussion)", opt_hybrid: "⚖️ Balanced Music & Rhythm", opt_cue: "Cue (Short)", opt_loop: "♾️ Seamlessly Loopable Background Music", opt_full: "Full Track",
                 opt_no_rhythm: "No Rhythm (Free Timing)", p_inst_orchestra: "Orchestration & Instruments",
                 opt_rm_rhythmic: "🥁 Rhythmic & Direct",
 opt_rm_music_first: "🎼 Music First",
@@ -2823,4 +2823,36 @@ const ModalManager = (() => {
 
 document.addEventListener("DOMContentLoaded", () => {
     App.init(); 
+
+    // ====== ضف البلوك هنا ====== //
+    // Patch: UX Logic Separation for Loop Option
+    const handleTrackTypeLogic = () => {
+        const trackTypeSelect = document.getElementById('p_track_type');
+        const isInstrumental = document.getElementById('radioInst').checked;
+        
+        // إزالة خيار الـ Loop أولاً لتنظيف القائمة
+        const existingLoop = trackTypeSelect.querySelector('option[value="loop"]');
+        if (existingLoop) existingLoop.remove();
+
+        // Loop is only supported for Soundtrack / Background music
+        if (isInstrumental) {
+            const loopOption = document.createElement('option');
+            loopOption.value = 'loop';
+            loopOption.setAttribute('data-i18n', 'opt_loop');
+            loopOption.textContent = TranslationEngine.get('opt_loop');
+            trackTypeSelect.appendChild(loopOption);
+        } else {
+            if (trackTypeSelect.value === 'loop') {
+                trackTypeSelect.value = 'full';
+            }
+        }
+    };
+
+    // ربط المنطق بمفاتيح التبديل
+    document.getElementById('radioVocal').addEventListener('change', handleTrackTypeLogic);
+    document.getElementById('radioInst').addEventListener('change', handleTrackTypeLogic);
+    
+    // سطر إضافي لتشغيل الدالة فوراً عند فتح الصفحة لضبط الحالة الافتراضية
+    handleTrackTypeLogic();
+    // ============================ //
 });
