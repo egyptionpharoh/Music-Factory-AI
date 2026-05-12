@@ -1,8 +1,17 @@
 const Config = {
-        get API_BASE_URL() {
-            return 'https://lucid-manifestation-production-c302.up.railway.app';
+    get API_BASE_URL() {
+        // لو إنت شغال على جهازك المحلي (بنجرب وبنختبر)
+        if (
+            window.location.hostname === 'localhost' ||
+            window.location.hostname === '127.0.0.1'
+        ) {
+            return 'http://localhost:3000';
         }
-    };
+
+        // لو إنت في الإنتاج، ابعت الطلبات مباشرة لسيرفر المايسترو على Railway
+        return 'https://lucid-manifestation-production-c302.up.railway.app';
+    }
+};
 
 // 2. ثم يبدأ تطبيقك بشكل طبيعي
 const App = (() => {
@@ -240,6 +249,7 @@ opt_voc_edu_kids: "📚 صوت تعليمي للأطفال",
                 ob_generate: "3. توليد البرومبت", ob_generate_desc: "اضغط لتوليد الأوامر الجاهزة لاستخدامها في Suno AI!",
                 ob_skip: "تخطي", ob_back: "السابق", ob_next: "التالي", ob_finish: "إنهاء",
                 sec_prompt_lib: "           📚            مكتبة الأنماط الجاهزة لغير المتخصصين", opt_lib_custom: "تصميم مخصص...", opt_lib_pop: "بوب (Pop)", opt_lib_cinematic: "سينمائي (Cinematic)", opt_lib_epic: "مقطوعة ملحمية (Epic Trailer)", opt_lib_ambient: "موسيقى هادئة (Ambient)", opt_lib_lofi: "لوفي (Lofi)", opt_lib_arabic_pop: "بوب عربي (Arabic Pop)", opt_lib_emotional: "بيانو عاطفي (Emotional Piano)", opt_lib_orchestral: "أوركسترا (Orchestral Score)",
+                
                 cat_scene: "نوع المشهد:", cat_dialogue: "وجود حوار:", cat_density: "كثافة الموسيقى:",
                 nav_home: "الرئيسية", nav_studio: "الاستوديو", nav_production: "الإخراج", nav_community: "مجتمعي", nav_my_project: "مشروعي"
             },
