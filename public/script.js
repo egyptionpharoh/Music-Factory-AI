@@ -2239,28 +2239,590 @@ if (realRegisterBtn) {
             { ar: "أغنية أمل وتفاؤل", en: "Hope & Optimism Song", data: { rhythm: "maqsum", feeling: "uplifting", vocals: "Female vocal", tempo: "Medium", maqam: "Nahawand", rhythmicMode: "Hybrid", instrumentation: "Intro: Piano, Acoustic Guitar | Verse: Piano | Chorus: Violins, Drum Kit", trackType: "full", duration: 180 } },
             { ar: "أغنية سفر ومغامرة", en: "Travel & Adventure Song", data: { rhythm: "malfuf", feeling: "joyful", vocals: "Male vocal", tempo: "Fast", maqam: "Rast", rhythmicMode: "Rhythmic", instrumentation: "Intro: Acoustic Guitar, Flute | Verse: Acoustic Guitar | Chorus: Drum Kit, Brass", trackType: "full", duration: 180 } }
         ];
-        const cinematicCategories = {
-            "         🎬          موسيقى سينمائية": { en: "         🎬          Cinematic Music", subs: {} },
-            "         ⚽          موسيقى رياضية": { en: "         ⚽          Sports Music", subs: {} },
-            "         🕌          موسيقى دينية": { en: "         🕌          Religious Music", subs: {} },
-            "         🧠          موسيقى علاجية": { en: "         🧠          Healing Music", subs: {} },
-            "         🎮          موسيقى ألعاب": { en: "         🎮          Gaming Music", subs: {} }
-        };
-        const cinematicPopulator = [
-            { cat: "         🎬          موسيقى سينمائية", ar: "مشهد رومانسي هادئ", en: "Quiet Romantic Scene", r: "None", f: "romantic", m: "Nahawand", t: "Slow", scene: "Romantic", dial: "Yes", dens: "Low", rMode: "Ambient", inst: "Intro: Piano, Cello | Verse: Piano | Chorus: Violins", trackType: "full", dur: 120 },
-            { cat: "         🎬          موسيقى سينمائية", ar: "مشهد درامي ملحمي", en: "Epic Dramatic Scene", r: "military_march", f: "epic", m: "Kurd", t: "Medium", scene: "Drama", dial: "No", dens: "High", rMode: "Hybrid", inst: "Intro: Brass, Timpani | Verse: Violins, Cello | Chorus: Full Orchestra", trackType: "full", dur: 180 }
-        ];
-        for (let i = 0; i < cinematicPopulator.length; i++) {
-            let template = cinematicPopulator[i];
-            cinematicCategories[template.cat].subs[`${template.ar}`] = {
-                en: `${template.en}`,
-                data: {
-                    rhythm: template.r, feeling: template.f, vocals: "Instrumental Solo, No Vocals", tempo: template.t, maqam: template.m,
-                    cineScene: template.scene, cineDialogue: template.dial, cineDensity: template.dens,
-                    rhythmicMode: template.rMode, instrumentation: template.inst, trackType: template.trackType, duration: template.dur
-                }
-            };
+      const cinematicCategories = {
+    "🎬 موسيقى سينمائية": { en: "🎬 Cinematic Music", subs: {} },
+    "⚽ موسيقى رياضية": { en: "⚽ Sports Music", subs: {} },
+    "🕌 موسيقى دينية": { en: "🕌 Religious Music", subs: {} },
+    "🧠 موسيقى علاجية": { en: "🧠 Healing Music", subs: {} },
+    "🎮 موسيقى ألعاب": { en: "🎮 Gaming Music", subs: {} }
+};
+
+const cinematicPopulator = [
+
+    // =========================
+    // 🎬 المشاهد السينمائية الأساسية
+    // =========================
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "مشهد رومانسي هادئ",
+        en: "Quiet Romantic Scene",
+        r: "None",
+        f: "romantic",
+        m: "Nahawand",
+        t: "Slow",
+        scene: "Romantic",
+        dial: "Yes",
+        dens: "Low",
+        rMode: "ambient",
+        inst: "Intro: Piano, Cello | Verse: Piano | Chorus: Violins",
+        trackType: "full",
+        dur: 120
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "مشهد درامي ملحمي",
+        en: "Epic Dramatic Scene",
+        r: "military_march",
+        f: "epic",
+        m: "Kurd",
+        t: "Medium",
+        scene: "Drama",
+        dial: "No",
+        dens: "High",
+        rMode: "cinematic",
+        inst: "Intro: Brass, Timpani | Verse: Violins, Cello | Chorus: Full Orchestra",
+        trackType: "full",
+        dur: 180
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "أكشن ومطاردات سريعة",
+        en: "Action Fast Chase",
+        r: "None",
+        f: "action",
+        m: "Kurd",
+        t: "Fast",
+        scene: "Action",
+        dial: "No",
+        dens: "High",
+        rMode: "rhythm_first",
+        inst: "Intro: Fast Strings | Verse: Heavy Drums, Brass | Chorus: Epic Orchestra",
+        trackType: "full",
+        dur: 150
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "غموض وتحقيقات",
+        en: "Mystery Investigation",
+        r: "None",
+        f: "mystery",
+        m: "Nahawand",
+        t: "Slow",
+        scene: "Mystery",
+        dial: "Yes",
+        dens: "Low",
+        rMode: "ambient",
+        inst: "Intro: Bass Pulses | Verse: Dark Piano, FX",
+        trackType: "loop",
+        dur: 130
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "رعب وتوتر نفسي",
+        en: "Psychological Horror",
+        r: "None",
+        f: "horror",
+        m: "Saba",
+        t: "Slow",
+        scene: "Horror",
+        dial: "No",
+        dens: "Medium",
+        rMode: "ambient",
+        inst: "Intro: Dissonant Strings | Verse: Horror FX, Low Booms",
+        trackType: "cue",
+        dur: 80
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "خيال علمي وفضاء",
+        en: "Sci-Fi Space",
+        r: "electronic",
+        f: "scifi",
+        m: "Ajam",
+        t: "Medium",
+        scene: "SciFi",
+        dial: "Yes",
+        dens: "Medium",
+        rMode: "epic_hybrid",
+        inst: "Intro: Ambient Synths | Verse: Pulses, Electronic FX",
+        trackType: "loop",
+        dur: 180
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "ملحمة صحراوية عربية",
+        en: "Epic Arabian Desert",
+        r: "ayoub",
+        f: "epic_arabic",
+        m: "Hijaz",
+        t: "Medium",
+        scene: "Desert",
+        dial: "No",
+        dens: "High",
+        rMode: "epic_hybrid",
+        inst: "Intro: Nay, Rababa | Verse: Arabic Percussion | Chorus: Epic Choir",
+        trackType: "full",
+        dur: 200
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "وداع وفراق مؤثر",
+        en: "Sad Farewell",
+        r: "None",
+        f: "sad",
+        m: "Saba",
+        t: "Slow",
+        scene: "Farewell",
+        dial: "Yes",
+        dens: "Low",
+        rMode: "music_first",
+        inst: "Intro: Solo Cello | Verse: Emotional Piano",
+        trackType: "full",
+        dur: 150
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "انتصار ومجد بطل",
+        en: "Heroic Victory",
+        r: "military_march",
+        f: "victory",
+        m: "Rast",
+        t: "Medium",
+        scene: "Victory",
+        dial: "No",
+        dens: "High",
+        rMode: "cinematic",
+        inst: "Intro: Brass Fanfare | Chorus: Epic Choir",
+        trackType: "full",
+        dur: 120
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "فانتازيا وعوالم سحرية",
+        en: "Fantasy Magic World",
+        r: "None",
+        f: "fantasy",
+        m: "Ajam",
+        t: "Medium",
+        scene: "Fantasy",
+        dial: "Yes",
+        dens: "Medium",
+        rMode: "ambient",
+        inst: "Intro: Harp, Glockenspiel | Verse: Strings, Woodwinds",
+        trackType: "loop",
+        dur: 140
+    },
+
+    // =========================
+    // 🎭 مشاهد نفسية وإنسانية
+    // =========================
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "وحدة وعزلة نفسية",
+        en: "Loneliness Isolation",
+        r: "None",
+        f: "isolation",
+        m: "Saba",
+        t: "Slow",
+        scene: "Isolation",
+        dial: "Yes",
+        dens: "Low",
+        rMode: "ambient",
+        inst: "Intro: Sparse Piano | Verse: Ambient Pads, Cello",
+        trackType: "loop",
+        dur: 160
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "أمل بعد الانكسار",
+        en: "Hope Recovery",
+        r: "None",
+        f: "hope",
+        m: "Rast",
+        t: "Slow",
+        scene: "Hope",
+        dial: "Yes",
+        dens: "Low",
+        rMode: "music_first",
+        inst: "Intro: Piano | Verse: Warm Strings",
+        trackType: "full",
+        dur: 130
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "ذكريات وحنين للماضي",
+        en: "Nostalgia Memories",
+        r: "None",
+        f: "nostalgia",
+        m: "Bayati",
+        t: "Slow",
+        scene: "Nostalgia",
+        dial: "Yes",
+        dens: "Low",
+        rMode: "music_first",
+        inst: "Intro: Warm Piano | Verse: Oud, Strings",
+        trackType: "full",
+        dur: 140
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "خيانة وصدمة",
+        en: "Betrayal Shock",
+        r: "None",
+        f: "betrayal",
+        m: "Saba",
+        t: "Slow",
+        scene: "Betrayal",
+        dial: "No",
+        dens: "High",
+        rMode: "cinematic",
+        inst: "Intro: Sharp Strings | Verse: Heavy Brass",
+        trackType: "cue",
+        dur: 60
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "انتقام وغضب داخلي",
+        en: "Revenge Rage",
+        r: "military_march",
+        f: "revenge",
+        m: "Hijaz",
+        t: "Medium",
+        scene: "Revenge",
+        dial: "No",
+        dens: "High",
+        rMode: "cinematic",
+        inst: "Intro: Heavy Drums | Verse: Aggressive Strings",
+        trackType: "full",
+        dur: 150
+    },
+
+    // =========================
+    // 🌍 بيئات وأماكن
+    // =========================
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "مدينة عربية قديمة",
+        en: "Ancient Arab City",
+        r: "malfuf",
+        f: "historic",
+        m: "Bayati",
+        t: "Medium",
+        scene: "Historic",
+        dial: "Yes",
+        dens: "Medium",
+        rMode: "music_first",
+        inst: "Intro: Oud, Ney | Verse: Arabic Percussion",
+        trackType: "loop",
+        dur: 170
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "مدينة ليلية حديثة",
+        en: "Modern Night City",
+        r: "trap",
+        f: "urban",
+        m: "Kurd",
+        t: "Medium",
+        scene: "Urban",
+        dial: "Yes",
+        dens: "Medium",
+        rMode: "epic_hybrid",
+        inst: "Intro: Deep Bass | Verse: Trap Drums, Synth",
+        trackType: "loop",
+        dur: 150
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "مشهد وثائقي طبيعي",
+        en: "Nature Documentary",
+        r: "None",
+        f: "nature",
+        m: "Rast",
+        t: "Medium",
+        scene: "Nature",
+        dial: "Yes",
+        dens: "Medium",
+        rMode: "balanced",
+        inst: "Intro: Flutes, Strings | Verse: Ambient Pads",
+        trackType: "loop",
+        dur: 180
+    },
+
+    // =========================
+    // ⚔️ حرب ومعارك
+    // =========================
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "توتر قبل المعركة",
+        en: "Pre Battle Tension",
+        r: "None",
+        f: "war_tension",
+        m: "Hijaz",
+        t: "Slow",
+        scene: "War",
+        dial: "No",
+        dens: "Medium",
+        rMode: "cinematic",
+        inst: "Intro: Dark Brass | Verse: Rising Strings",
+        trackType: "cue",
+        dur: 90
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "هروب ونجاة",
+        en: "Escape Survival",
+        r: "None",
+        f: "survival",
+        m: "Kurd",
+        t: "Fast",
+        scene: "Survival",
+        dial: "No",
+        dens: "High",
+        rMode: "rhythm_first",
+        inst: "Intro: Fast Percussion | Verse: Aggressive Orchestra",
+        trackType: "cue",
+        dur: 100
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "معركة نهائية ملحمية",
+        en: "Final Epic Battle",
+        r: "military_march",
+        f: "final_battle",
+        m: "Hijaz",
+        t: "Fast",
+        scene: "Battle",
+        dial: "No",
+        dens: "High",
+        rMode: "cinematic",
+        inst: "Intro: War Drums | Chorus: Massive Orchestra & Choir",
+        trackType: "full",
+        dur: 220
+    },
+
+    // =========================
+    // 👑 ملكي وتاريخي
+    // =========================
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "مؤامرات القصور الملكية",
+        en: "Royal Palace Intrigue",
+        r: "waltz",
+        f: "royal",
+        m: "Nahawand",
+        t: "Slow",
+        scene: "Royal",
+        dial: "Yes",
+        dens: "Medium",
+        rMode: "music_first",
+        inst: "Intro: Harpsichord | Verse: Orchestral Waltz",
+        trackType: "full",
+        dur: 160
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "مشهد تاريخي عربي",
+        en: "Arab Historical Scene",
+        r: "malfuf",
+        f: "arab_history",
+        m: "Hijaz",
+        t: "Medium",
+        scene: "Historical",
+        dial: "No",
+        dens: "Medium",
+        rMode: "epic_hybrid",
+        inst: "Intro: Oud, Ney | Chorus: Arabic Epic Choir",
+        trackType: "full",
+        dur: 180
+    },
+
+    // =========================
+    // 🎮 حديث ومتطور
+    // =========================
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "مطاردة إلكترونية مستقبلية",
+        en: "Cyberpunk Chase",
+        r: "electronic",
+        f: "cyberpunk",
+        m: "Kurd",
+        t: "Fast",
+        scene: "Cyberpunk",
+        dial: "No",
+        dens: "High",
+        rMode: "rhythm_first",
+        inst: "Intro: Aggressive Synth Bass | Verse: Electronic Drums",
+        trackType: "loop",
+        dur: 170
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "اختراق وتجسس إلكتروني",
+        en: "Hacking Spy Tech",
+        r: "electronic",
+        f: "hacking",
+        m: "Kurd",
+        t: "Medium",
+        scene: "Technology",
+        dial: "Yes",
+        dens: "Medium",
+        rMode: "balanced",
+        inst: "Intro: Digital Pulses | Verse: Glitch FX, Synth Bass",
+        trackType: "loop",
+        dur: 120
+    },
+
+    // =========================
+    // ✨ روحاني وتأمل
+    // =========================
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "روحانيات وتأمل صوفي",
+        en: "Sufi Spiritual Reflection",
+        r: "wahda",
+        f: "spiritual",
+        m: "Sikah",
+        t: "Slow",
+        scene: "Spiritual",
+        dial: "Yes",
+        dens: "Low",
+        rMode: "ambient",
+        inst: "Intro: Ney, Drone | Verse: Atmospheric Choir",
+        trackType: "loop",
+        dur: 200
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "حلم وتأمل داخلي",
+        en: "Dream Reflection",
+        r: "None",
+        f: "dreamy",
+        m: "Sikah",
+        t: "Slow",
+        scene: "Meditation",
+        dial: "Yes",
+        dens: "Low",
+        rMode: "ambient",
+        inst: "Intro: Ethereal Pads | Verse: Soft Piano",
+        trackType: "loop",
+        dur: 180
+    },
+
+    // =========================
+    // 😊 خفيف وكوميدي
+    // =========================
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "كوميديا وخفة ظل",
+        en: "Comedy Humor",
+        r: "fox",
+        f: "comedy",
+        m: "Ajam",
+        t: "Fast",
+        scene: "Comedy",
+        dial: "Yes",
+        dens: "Medium",
+        rMode: "balanced",
+        inst: "Intro: Clarinet | Verse: Pizzicato Strings",
+        trackType: "cue",
+        dur: 70
+    },
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "مشهد طفولة بريئة",
+        en: "Innocent Childhood",
+        r: "None",
+        f: "childhood",
+        m: "Ajam",
+        t: "Slow",
+        scene: "Childhood",
+        dial: "Yes",
+        dens: "Low",
+        rMode: "music_first",
+        inst: "Intro: Music Box | Verse: Soft Piano, Strings",
+        trackType: "full",
+        dur: 120
+    },
+
+    // =========================
+    // 🔚 نهايات
+    // =========================
+
+    {
+        cat: "🎬 موسيقى سينمائية",
+        ar: "نهاية مفتوحة وغامضة",
+        en: "Open Ending Mystery",
+        r: "None",
+        f: "ending",
+        m: "Nahawand",
+        t: "Slow",
+        scene: "Ending",
+        dial: "Yes",
+        dens: "Low",
+        rMode: "ambient",
+        inst: "Intro: Ambient Piano | Verse: Sparse Strings",
+        trackType: "cue",
+        dur: 75
+    }
+
+];
+
+for (let i = 0; i < cinematicPopulator.length; i++) {
+
+    let template = cinematicPopulator[i];
+
+    cinematicCategories[template.cat].subs[template.ar] = {
+
+        en: template.en,
+
+        data: {
+            rhythm: template.r,
+            feeling: template.f,
+            vocals: "Instrumental Solo, No Vocals",
+            tempo: template.t,
+            maqam: template.m,
+
+            cineScene: template.scene,
+            cineDialogue: template.dial,
+            cineDensity: template.dens,
+
+            rhythmicMode: template.rMode,
+            instrumentation: template.inst,
+            trackType: template.trackType,
+            duration: template.dur
         }
+    };
+}
         const fillUIFields = (dataObj) => {
             const mappings = {
                 rhythm: 'p_rhythm', feeling: 'p_feeling', vocals: 'p_vocals', tempo: 'p_tempo', maqam: 'p_maqam',
