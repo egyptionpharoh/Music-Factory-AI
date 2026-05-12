@@ -377,21 +377,90 @@ Go to Studio and pick rhythm, mood, and maqam.<br>4. Generate and copy outputs.<
 <span class="tooltip">          ❓            <span class="tooltiptext" data-i18n="tt_intro">The intro dictates how your track begins.</span></span>
 </label>
 <select id="introDropdown" class="neon-box auto-save-trigger" style="margin-bottom: 10px; font-weight: bold;">
-<option value="تلقائي (حسب اللحن)" data-i18n="opt_intro_auto">          🪄            Automatic</option>
-<option value="مقدمة موسيقية طويلة" data-i18n="opt_intro_long">          🎻            Long Instrumental</option>
-<option value="دخول مفاجئ (بدون مقدمة)" data-i18n="opt_intro_sudden">          ⚡            Sudden Entry</option>
-<option value="بناء تدريجي (تصاعدي)" data-i18n="opt_intro_build">          📈            Gradual Buildup</option>
-<option value="مقدمة إيقاعية (طبلة/درامز)" data-i18n="opt_intro_perc">          🥁            Percussive Intro</option>
-<option value="مقدمة غنائية (آهات/كورال)" data-i18n="opt_intro_vocal">          🎤            Vocal Intro</option>
+
+    <option value="تلقائي (حسب نوع الأغنية)" data-i18n="opt_intro_auto">
+        🪄 تلقائي حسب نوع الأغنية
+    </option>
+
+    <option value="مقدمة موسيقية طويلة" data-i18n="opt_intro_long">
+        🎻 مقدمة موسيقية طويلة
+    </option>
+
+    <option value="خبط لزق (بدون مقدمة)" data-i18n="opt_intro_direct">
+        ⚡ خبط لزق (بدون مقدمة)
+    </option>
+
+    <option value="بناء تدريجي (تصاعدي)" data-i18n="opt_intro_build">
+        📈 بناء تدريجي (تصاعدي)
+    </option>
+
+    <option value="مقدمة إيقاعية (طبلة/درامز)" data-i18n="opt_intro_perc">
+        🥁 مقدمة إيقاعية (طبلة/درامز)
+    </option>
+
+    <option value="مقدمة غنائية (آهات/كورال)" data-i18n="opt_intro_vocal">
+        🎤 مقدمة غنائية (آهات/كورال)
+    </option>
+
+    <option value="مقدمة بيانو رومانسية">
+        🎹 مقدمة بيانو رومانسية
+    </option>
+
+    <option value="مقدمة حزينة حالمة">
+        🌙 مقدمة حزينة حالمة
+    </option>
+
+    <option value="مقدمة إلكترونية حديثة">
+        🎛️ مقدمة إلكترونية حديثة
+    </option>
+
+    <option value="مقدمة راب مباشرة">
+        🎤 مقدمة راب مباشرة
+    </option>
+
+    <option value="صولو عود شرقي">
+        🎼 صولو عود شرقي
+    </option>
+
+    <option value="تقاسيم قانون وناي">
+        🪈 تقاسيم قانون وناي
+    </option>
+
+    <option value="دخول كورال ملحمي">
+        🎶 دخول كورال ملحمي
+    </option>
+
+    <option value="مقدمة فرح شعبي">
+        🥁 مقدمة فرح شعبي
+    </option>
+
+    <option value="مقدمة سينمائية ملحمية" data-i18n="opt_intro_cinematic">
+        🎬 مقدمة سينمائية ملحمية
+    </option>
+
+    <option value="مقدمة شعبية مصرية" data-i18n="opt_intro_shaabi">
+        🪘 مقدمة شعبية مصرية
+    </option>
+
+    <option value="مقدمة أوركسترالية عربية" data-i18n="opt_intro_orchestral">
+        🎻 مقدمة أوركسترالية عربية
+    </option>
+
 </select>
 </div>
+
 <div class="pillars-grid">
 <div class="pillar">
-<label><span data-i18n="p_rhythmic_mode">Rhythmic Mode</span></label>
+<label><span data-i18n="p_rhythmic_mode">النمط الإيقاعي</span></label>
 <select id="p_rhythmic_mode" class="auto-save-trigger neon-box">
-<option value="Rhythmic" data-i18n="opt_rhythmic">Rhythmic</option>
-<option value="Ambient" data-i18n="opt_ambient">Ambient</option>
-<option value="Hybrid" data-i18n="opt_hybrid">Hybrid</option>
+<option value="balanced" data-i18n="opt_rm_balanced">⚖️ توازن بين الموسيقى والإيقاع</option>
+<option value="rhythmic" data-i18n="opt_rm_rhythmic">🥁 إيقاع واضح ومباشر</option>
+<option value="music_first" data-i18n="opt_rm_music_first">🎼 موسيقى ثم إيقاع</option>
+<option value="rhythm_first" data-i18n="opt_rm_rhythm_first">🥁 إيقاع ثم موسيقى</option>
+<option value="soft_groove" data-i18n="opt_rm_soft_groove">✨ إيقاع ناعم وخفيف</option>
+<option value="ambient" data-i18n="opt_rm_ambient">🌌 أجواء هادئة بدون إيقاع</option>
+<option value="cinematic" data-i18n="opt_rm_cinematic">🎬 طابع سينمائي ملحمي</option>
+<option value="epic_hybrid" data-i18n="opt_rm_epic_hybrid">🔥 مزيج شرقي حديث</option>
 </select>
 </div>
 <div class="pillar">
@@ -414,13 +483,41 @@ Go to Studio and pick rhythm, mood, and maqam.<br>4. Generate and copy outputs.<
 </div>
 <div class="pillar" id="vocalPillar">
 <label data-i18n="p3">3. Vocalist</label>
-<select id="p_vocals" class="auto-save-trigger neon-box">
+<select id="p_vocals" class="auto-save-trigger neon-box searchable-native" data-searchable="true">
 <option value="Auto">تلقائي (Auto)</option>
-<option value="Male vocal" data-i18n="opt_male">Male Vocal</option><option value="Female vocal" data-i18n="opt_female">Female Vocal</option>
-<option value="Young boy vocal" data-i18n="opt_boy">Young Boy Vocal</option><option value="Young girl vocal" data-i18n="opt_girl">Young Girl Vocal</option>
-<option value="Children choir" data-i18n="opt_child_choir">Children Choir</option><option value="Male choir" data-i18n="opt_male_choir">Male Choir</option>
-<option value="Group vocal harmony" data-i18n="opt_group">Group Harmony</option><option value="Poetry recitation" data-i18n="opt_poetry">Poetry Recitation</option>
-<option value="Operatic vocal" data-i18n="opt_operatic">Operatic Vocal</option><option value="Raspy vocal" data-i18n="opt_raspy">Raspy Vocal</option>
+<optgroup label="الأصوات الأساسية" data-i18n-label="og_vocals_basic">
+<option value="Male vocal" data-i18n="opt_male">👨 صوت رجالي</option>
+<option value="Female vocal" data-i18n="opt_female">👩 صوت نسائي</option>
+<option value="Young boy vocal" data-i18n="opt_boy">👦 صوت طفل</option>
+<option value="Young girl vocal" data-i18n="opt_girl">👧 صوت طفلة</option>
+<option value="Children choir" data-i18n="opt_child_choir">👦👧 كورال أطفال</option>
+<option value="Male choir" data-i18n="opt_male_choir">👨‍🎤👨‍🎤 كورال رجال</option>
+<option value="Group vocal harmony" data-i18n="opt_group">👥 هارموني جماعي</option>
+</optgroup>
+<optgroup label="الدويتوهات" data-i18n-label="og_vocals_duets">
+<option value="Male/Female duet" data-i18n="opt_duet_mf">👫 دويتو رجالي/نسائي</option>
+<option value="Romantic duet" data-i18n="opt_duet_romantic">💞 دويتو رومانسي</option>
+<option value="Rap and singing duet" data-i18n="opt_duet_rap">🎤🎶 دويتو راب وغناء</option>
+<option value="Mother and child duet" data-i18n="opt_duet_mom_child">👩‍👦 دويتو طفل وأم</option>
+<option value="Egyptian shaabi duet" data-i18n="opt_duet_shaabi">🪘 دويتو شعبي مصري</option>
+<option value="Epic choir duet" data-i18n="opt_duet_epic">🏛️ دويتو كورال ملحمي</option>
+</optgroup>
+<optgroup label="الأنماط الاحترافية والشرقية" data-i18n-label="og_vocals_pro">
+<option value="Oriental tarab vocal" data-i18n="opt_voc_tarab">🎼 صوت شرقي طربي</option>
+<option value="Khaleeji vocal" data-i18n="opt_voc_khaleeji">🐪 صوت خليجي</option>
+<option value="Bedouin vocal" data-i18n="opt_voc_bedouin">⛺ صوت بدوي</option>
+<option value="Egyptian shaabi vocal" data-i18n="opt_voc_shaabi">🥁 صوت شعبي مصري</option>
+<option value="Arabic rap vocal" data-i18n="opt_voc_rap">🎧 صوت راب عربي</option>
+<option value="Intimate soft vocal" data-i18n="opt_voc_intimate">☕ صوت هادئ حميمي</option>
+<option value="Cinematic dramatic vocal" data-i18n="opt_voc_cinematic">🎬 صوت درامي سينمائي</option>
+<option value="Angelic soft vocal" data-i18n="opt_voc_angelic">🕊️ صوت ملائكي ناعم</option>
+<option value="Powerful energetic vocal" data-i18n="opt_voc_powerful">🔥 صوت حماسي قوي</option>
+<option value="Religious chanting vocal" data-i18n="opt_voc_chanting">🕌 صوت إنشادي ديني</option>
+<option value="Educational kids vocal" data-i18n="opt_voc_edu_kids">📚 صوت تعليمي للأطفال</option>
+<option value="Poetry recitation" data-i18n="opt_poetry">📜 إلقاء شعري</option>
+<option value="Operatic vocal" data-i18n="opt_operatic">🎭 صوت أوبرالي</option>
+<option value="Raspy vocal" data-i18n="opt_raspy">🎸 صوت مبحوح</option>
+</optgroup>
 </select>
 </div>
 <div class="pillar">
