@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <title>Music Factory | Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { padding: 20px; background: #0a0a0a; }
+        .admin-container { max-width: 1000px; margin: 50px auto; background: var(--card-night, #111); padding: 30px; border-radius: 15px; border: 1px solid var(--neon-red); box-shadow: 0 0 15px rgba(255, 0, 0, 0.2); }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; color: white; text-align: right; }
+        th, td { padding: 15px; border-bottom: 1px solid #333; }
+        th { color: var(--neon-red); font-family: 'Orbitron', sans-serif; }
+        .status-active { color: #00ff00; }
+        .status-blocked { color: #ff4d4d; }
+    </style>
+</head>
+<body>
+
+    <div class="admin-container">
+        <h1 style="color: var(--neon-red); text-shadow: 0 0 10px rgba(255,0,0,0.5); text-align: center;">👑 نظام إدارة المايسترو</h1>
+        
+        <table id="usersTable">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Joined</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </div>
+
+    <script>
+        // دالة جلب المستخدمين وعرضهم
+        async function fetchUsers() {
+            const token = localStorage.getItem('music_factory_token');
+            if (!token) {
+                alert("غير مصرح لك بالدخول!");
+                window.location.href = '/';
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/admin/users', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const tbody = document.querySelector('#usersTable tbody');
+                    tbody.innerHTML = '';
+
+                    // رسم الجدول
+                    data.users.forEach(user => {
+                        const date = new Date(user.createdAt).toLocaleDateString('ar-EG');
+                        const isBlocked = user.status === 'blocked';
+                        const actionBtn = isBlocked 
+                            ? `<button onclick="changeStatus('${user._id}', 'active')" class="btn-success" style="padding: 5px 15px; margin:0; background: green; color: white; border: none; border-radius: 5px; cursor: pointer;">فك الحظر</button>`
+                            : `<button onclick="changeStatus('${user._id}', 'blocked')" class="btn-danger" style="padding: 5px 15px; margin:0; background: red; color: white; border: none; border-radius: 5px; cursor: pointer;">حظر</button>`;
+
+                        tbody.innerHTML += `
+                            <tr>
+                                <td>${user.email}</td>
+                                <td>${user.role}</td>
+                                <td class="${isBlocked ? 'status-blocked' : 'status-active'}">${user.status}</td>
+                                <td>${date}</td>
+                                <td>${actionBtn}</td>
+                            </tr>
+                        `;
+                    });
+                } else {
+                    alert("عذراً، هذه الصفحة للمديرين فقط.");
+                    window.location.href = '/';
+                }
+            } catch (error) {
+                console.error("خطأ في الاتصال بالسيرفر", error);
+            }
+        }
+
+        // دالة تغيير الحالة (بلوك / فك بلوك)
+        async function changeStatus(userId, newStatus) {
+            const token = localStorage.getItem('music_factory_token');
+            try {
+                const response = await fetch('/api/admin/change-status', {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ userId, newStatus })
+                });
+
+                if (response.ok) {
+                    fetchUsers(); // تحديث الجدول فوراً بعد التعديل
+                } else {
+                    const error = await response.json();
+                    alert(error.message);
+                }
+            } catch (error) {
+                alert("حدث خطأ أثناء التعديل");
+            }
+        }
+
+        // تشغيل الدالة فور تحميل الصفحة
+        window.onload = fetchUsers;
+    </script>
+</body>
+</html>

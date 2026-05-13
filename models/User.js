@@ -8,20 +8,32 @@ const userSchema = new mongoose.Schema({
     email: { 
         type: String, 
         required: true, 
-        unique: true // الإيميل لازم يكون غير مكرر
+        unique: true 
     },
     password: { 
         type: String, 
         required: true 
     },
+    // الصلاحيات: هل هو مستخدم عادي ولا أدمن؟
+    role: { 
+        type: String, 
+        enum: ['user', 'admin'], 
+        default: 'user' 
+    },
+    // الحالة: هل الحساب شغال ولا محظور؟
+    status: { 
+        type: String, 
+        enum: ['active', 'blocked', 'suspended'], 
+        default: 'active' 
+    },
     credits: { 
         type: Number, 
-        default: 10 // الرصيد الافتراضي لأي مستخدم جديد
+        default: 10 
     },
     lastReset: {
         type: Date,
-        default: Date.now // عشان نجدد له النقاط كل 24 ساعة
+        default: Date.now 
     }
-}, { timestamps: true }); // بيسجل تلقائيا وقت إنشاء الحساب وتحديثه
+}, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

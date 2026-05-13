@@ -30,15 +30,31 @@ const App = (() => {
     })();
 
     const NetworkManager = (() => {
+        // خريطة لتتبع الطلبات وإلغائها عند الحاجة (لمنع تداخل مهام الـ AI أو الموسيقى)
+        const activeRequests = new Map();
+
         const baseFetch = async (endpoint, options = {}, isAuthRequired = false) => {
             const url = `${Config.API_BASE_URL}${endpoint}`;
             const headers = { 'Content-Type': 'application/json', ...options.headers };
+            
             if (isAuthRequired) {
                 const token = localStorage.getItem('music_factory_token');
                 if (token) headers['Authorization'] = `Bearer ${token}`;
             }
+
+            // إعداد نظام AbortController
+            const requestId = options.requestId || endpoint;
+            if (activeRequests.has(requestId)) {
+                activeRequests.get(requestId).abort(); // قتل الطلب القديم لو اتكرر قبل ما يخلص
+            }
+            const controller = new AbortController();
+            activeRequests.set(requestId, controller);
+            options.signal = controller.signal;
+
             try {
                 const response = await fetch(url, { ...options, headers });
+                activeRequests.delete(requestId); // تنظيف بعد النجاح
+
                 if (!response.ok) {
                     const errorData = await response.json().catch(() => ({}));
                     if ((response.status === 401 || response.status === 403) && isAuthRequired) {
@@ -49,11 +65,26 @@ const App = (() => {
                     throw new Error(errorData.error || errorData.message || "حدث خطأ من الخادم");
                 }
                 return await response.json();
-            } catch (error) { throw error; }
+            } catch (error) { 
+                activeRequests.delete(requestId); // تنظيف في حالة الخطأ
+                if (error.name === 'AbortError') {
+                    console.log(`[NetworkManager] تم إلغاء الطلب لتخفيف الحمل: ${endpoint}`);
+                    throw new Error("ABORTED"); // كود مخصص لتمييز الإلغاء عن الـ Errors الحقيقية
+                }
+                console.error(`Network Error [${endpoint}]:`, error);
+                throw error; 
+            }
         };
+
         return {
             publicFetch: (endpoint, options) => baseFetch(endpoint, options, false),
-            authenticatedFetch: (endpoint, options) => baseFetch(endpoint, options, true)
+            authenticatedFetch: (endpoint, options) => baseFetch(endpoint, options, true),
+            cancelRequest: (requestId) => {
+                if (activeRequests.has(requestId)) {
+                    activeRequests.get(requestId).abort();
+                    activeRequests.delete(requestId);
+                }
+            }
         };
     })();
 
@@ -2981,10 +3012,36 @@ for (let i = 0; i < cinematicPopulator.length; i++) {
     })();
 
     const MaestroAssistantManager = (() => {
-        let isGenerating = false;
-        let DOM = {};
+        let isGenerating = false;
+        let DOM = {};
 
-        const cacheDOM = () => {
+        // تعريف نظام الجلسات الخاص بالمايسترو
+        const initializeSession = () => {
+            let storedUser = null;
+            try {
+                const userStr = localStorage.getItem('music_factory_user');
+                if (userStr) storedUser = JSON.parse(userStr);
+            } catch(e) { console.warn("Error parsing user data", e); }
+
+            if (storedUser && (storedUser._id || storedUser.id)) {
+                return storedUser._id || storedUser.id; 
+            }
+            
+            let localSession = sessionStorage.getItem('mf_guest_session');
+            if (!localSession) {
+                try {
+                    localSession = crypto.randomUUID();
+                } catch (e) {
+                    localSession = 'guest-' + Date.now() + '-' + Math.random().toString(36).substring(2, 10);
+                }
+                sessionStorage.setItem('mf_guest_session', localSession);
+            }
+            return localSession;
+        };
+        
+        let currentSessionId = initializeSession();
+
+        const cacheDOM = () => {
             DOM = {
                 fab: document.getElementById('maestroFab'),
                 chatWindow: document.getElementById('maestroChatWindow'),
