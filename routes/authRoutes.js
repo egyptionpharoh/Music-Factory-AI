@@ -55,11 +55,15 @@ router.post('/login', loginLimiter, loginValidation, async (req, res) => {
         const isMatch = await comparePassword(password.trim(), user.password);
         if (!isMatch) return res.status(401).json({ error: "بيانات الدخول غير صحيحة" });
 
-        const token = jwt.sign(
-            { userId: user._id, email: user.email },
-            process.env.JWT_SECRET,
-            { expiresIn: '24h' }
-        );
+        // ابحث عن هذا الجزء في authRoutes.js وعدله ليكون هكذا:
+const token = jwt.sign(
+    { 
+        id: user._id, 
+        role: user.role // 👈 السطر ده هو اللي ناقص وموقف الدنيا!
+    }, 
+    process.env.JWT_SECRET, 
+    { expiresIn: '24h' }
+);
 
         res.status(200).json({ 
             message: "تم تسجيل الدخول بنجاح",
