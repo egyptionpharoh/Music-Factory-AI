@@ -1,28 +1,84 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User'); // استدعاء الموديل
-const verifyAdmin = require('../middleware/verifyAdmin'); // استدعاء الحماية
 
-// مسار عرض المستخدمين
-// التعديل ده في ملف routes/admin.js
+const User = require('../models/User');
+const verifyAdmin = require('../middleware/verifyAdmin');
+
+// =========================================
+// Get All Users
+// =========================================
 router.get('/users', verifyAdmin, async (req, res) => {
     try {
-        const users = await User.find({}, 'email role status createdAt').sort({ createdAt: -1 });
-        // بنحط users بين أقواس {} عشان الفرونت إند في admin.html يقرأها صح
-        res.json({ users }); 
+
+        const users = await User.find(
+            {},
+            'email role status createdAt'
+        ).sort({ createdAt: -1 });
+
+        res.status(200).json({ users });
+
     } catch (error) {
-        res.status(500).json({ message: "خطأ في السيرفر" });
+
+        console.error('Admin Users Error:', error);
+
+        res.status(500).json({
+            message: 'حدث خطأ أثناء جلب المستخدمين'
+        });
     }
 });
 
-// مسار البلوك/تغيير الحالة
+
+// =========================================
+// Change User Status
+// =========================================
 router.patch('/change-status', verifyAdmin, async (req, res) => {
-    const { userId, newStatus } = req.body;
+
     try {
-        await User.findByIdAndUpdate(userId, { status: newStatus });
-        res.json({ message: `تم تغيير الحالة لـ ${newStatus}` });
+
+        const { userId, newStatus } = req.body;
+
+        // الحالات المسموح بها فقط
+        const allowedStatuses = ['active', 'blocked'];
+
+        if (!userId || !newStatus) {
+            return res.status(400).json({
+                message: 'البيانات مطلوبة'
+            });
+        }
+
+        if (!allowedStatuses.includes(newStatus)) {
+            return res.status(400).json({
+                message: 'حالة غير مسموحة'
+            });
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { status: newStatus },
+            { new: true }
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({
+                message: 'المستخدم غير موجود'
+            });
+        }
+
+        res.status(200).json({
+            message: `تم تغيير الحالة إلى ${newStatus}`,
+            user: {
+                id: updatedUser._id,
+                status: updatedUser.status
+            }
+        });
+
     } catch (error) {
-        res.status(500).json({ message: "حصل خطأ" });
+
+        console.error('Change Status Error:', error);
+
+        res.status(500).json({
+            message: 'حدث خطأ أثناء تحديث الحالة'
+        });
     }
 });
 
